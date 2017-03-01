@@ -1,7 +1,14 @@
 package com.github.congyh.util;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.core.util.QuickWriter;
+import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.xml.Dom4JDriver;
+import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
+import com.thoughtworks.xstream.io.xml.XppDriver;
+
+import java.io.OutputStream;
+import java.io.Writer;
 
 import static java.lang.System.out;
 
@@ -10,16 +17,49 @@ import static java.lang.System.out;
  *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
-public class XStreamUtils {
+public class XmlUtils {
+    private static final XStream ENHANCED_XSTREAM = getEnhancedXStream();
 
     public static void main(String... args) {
         Person person = new Person(
             "张三", "男", "北邮");
-        out.println(XStreamUtils.pojo2WeChatXml(person));
+        out.println(XmlUtils.pojo2WeChatXml(person));
         String xml = "<xml><name>李四</name><gender>男</gender>" +
-            "<address>北理</address></xml>";
-        out.println((Person)XStreamUtils.weChatXml2Pojo(xml, Person.class));
+            "<address><![CDATA[北理]]></address></xml>";
+        out.println((Person) XmlUtils.weChatXml2Pojo(xml, Person.class));
 
+    }
+
+    /**
+     * 获得能够解析CDATA的XStream
+     *
+     * @return 增强版的XStream对象
+     */
+    private static XStream getEnhancedXStream() {
+        return new XStream(new XppDriver() {
+            @Override
+            public HierarchicalStreamWriter createWriter(Writer out) {
+                return new PrettyPrintWriter(out) {
+                    boolean cdata = true;
+
+                    @Override
+                    public void startNode(String name, Class clazz) {
+                        super.startNode(name, clazz);
+                    }
+
+                    @Override
+                    protected void writeText(QuickWriter writer, String text) {
+                        if (cdata) {
+                            writer.write("<![CDATA[");
+                            writer.write(text);
+                            writer.write("]]>");
+                        } else {
+                            writer.write(text);
+                        }
+                    }
+                };
+            }
+        });
     }
 
     /**
@@ -29,10 +69,9 @@ public class XStreamUtils {
      * @return pojo的微信公众平台消息xml
      */
     public static String pojo2WeChatXml(Object pojo) {
-        XStream xs = new XStream(new Dom4JDriver());
         // 定义xml转换的起始元素及关联的pojo类型
-        xs.alias("xml", pojo.getClass());
-        return xs.toXML(pojo);
+        ENHANCED_XSTREAM.alias("xml", pojo.getClass());
+        return ENHANCED_XSTREAM.toXML(pojo);
     }
 
     /**
@@ -43,10 +82,9 @@ public class XStreamUtils {
      * @return pojo对象(需要手动进行格式转换)
      */
     public static Object weChatXml2Pojo(String xml, Class<?> cls) {
-        XStream xs = new XStream(new Dom4JDriver());
         // 定义xml转换的起始元素及关联的pojo类型
-        xs.alias("xml", cls);
-        return xs.fromXML(xml);
+        ENHANCED_XSTREAM.alias("xml", cls);
+        return ENHANCED_XSTREAM.fromXML(xml);
     }
 }
 
