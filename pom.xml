@@ -6,6 +6,7 @@
 
     <groupId>com.github.congyh</groupId>
     <artifactId>wechat-public-platform</artifactId>
+    <packaging>war</packaging>
     <version>0.1</version>
 
     <name>WeChat Public Platform</name>
@@ -112,6 +113,13 @@
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
             <version>1.4.9</version>
+        </dependency>
+        <!--Servlet API-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
