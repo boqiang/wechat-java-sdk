@@ -1,13 +1,11 @@
-package com.github.congyh.model.message;
+package com.github.congyh.model.event;
 
 /**
- * 消息基类
- *
- * <p>根据微信公众平台-开发者文档标准建立
+ * 事件基类
  *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
-public abstract class AbstractMessage {
+public abstract class AbstractEvent {
     // 开发者微信号
     private String toUserName;
     // 发送方帐号（一个OpenID）
@@ -16,8 +14,8 @@ public abstract class AbstractMessage {
     private int createTime;
     // 消息类型
     private String msgType;
-    // 消息id，64位整型
-    private long msgId;
+    // 事件类型: subscribe(订阅)、unsubscribe(取消订阅)
+    private String event;
 
     public String getToUserName() {
         return toUserName;
@@ -51,11 +49,11 @@ public abstract class AbstractMessage {
         this.msgType = msgType;
     }
 
-    public long getMsgId() {
-        return msgId;
+    public String getEvent() {
+        return event;
     }
 
-    public void setMsgId(long msgId) {
-        this.msgId = msgId;
+    public void setEvent(String event) {
+        this.event = event;
     }
 }
