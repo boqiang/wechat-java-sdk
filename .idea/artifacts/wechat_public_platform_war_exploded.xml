@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="wechat-public-platform:war exploded">
-    <output-path>$PROJECT_DIR$/target/wechat-public-platform</output-path>
+    <output-path>$PROJECT_DIR$/target/ROOT</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -10,10 +10,11 @@
           <element id="library" level="project" name="Maven: com.thoughtworks.xstream:xstream:1.4.9" />
           <element id="library" level="project" name="Maven: xmlpull:xmlpull:1.1.3.1" />
           <element id="library" level="project" name="Maven: xpp3:xpp3_min:1.1.4c" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.10" />
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/wechat-public-platform/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/ROOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="wechat-public-platform/web/Web" />
     </root>

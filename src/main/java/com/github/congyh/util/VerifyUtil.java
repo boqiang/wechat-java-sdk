@@ -1,12 +1,9 @@
 package com.github.congyh.util;
 
 import com.github.congyh.config.AppConfig;
+import org.apache.commons.codec.digest.DigestUtils;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-
-import static java.lang.System.out;
 
 /**
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
@@ -25,19 +22,22 @@ public class VerifyUtil {
      */
     public static boolean checkSignature(String signature, String timestamp, String nonce) {
         // out.println("token: " + VerifyUtil.token);
-        String[] strs = new String[] {VerifyUtil.token, timestamp, nonce};
+        String[] strs = new String[] {"asgsgsdgsdf", timestamp, nonce};
         Arrays.sort(strs);
         String concatedStr = strs[0].concat(strs[1]).concat(strs[2]);
+        // 获取字符串的十六进制加密表示形式
+        String cipheredStr = DigestUtils.sha1Hex(concatedStr.getBytes());
 
-        String cipheredStr = null;
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-1");
-            byte[] ciphered = md.digest(concatedStr.getBytes());
-            cipheredStr = new String(ciphered);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        return cipheredStr != null && cipheredStr.equals(signature);
+//        String cipheredStr = null;
+//        try {
+//            MessageDigest md = MessageDigest.getInstance("SHA-1");
+//            byte[] ciphered = md.digest(concatedStr.getBytes());
+//            cipheredStr = new String(ciphered);
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return cipheredStr != null && cipheredStr.equals(signature);
+        return cipheredStr.equals(signature);
     }
 }
