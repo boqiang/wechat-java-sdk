@@ -74,4 +74,15 @@ public class CoreServlet extends HttpServlet {
         checkSignature(req, resp);
         super.service(req, resp);
     }
+
+    /**
+     * 获取用户请求消息类型
+     *
+     * @param req 用户请求
+     * @return 用户请求消息类型
+     */
+    public static String getMsgType(HttpServletRequest req) {
+        // TODO
+        return null;
+    }
 }

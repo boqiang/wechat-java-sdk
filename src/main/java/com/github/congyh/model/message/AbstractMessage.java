@@ -10,7 +10,7 @@ package com.github.congyh.model.message;
  *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
-public abstract class AbstractMessage {
+public class AbstractMessage {
     // 开发者微信号(接收时) or 发送方帐号（一个OpenID）(发送时)
     private String ToUserName;
     // 发送方帐号（一个OpenID）(接收时) or 开发者微信号(发送时)
