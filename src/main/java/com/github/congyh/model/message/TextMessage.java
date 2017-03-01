@@ -7,13 +7,13 @@ package com.github.congyh.model.message;
  */
 public class TextMessage extends AbstractMessage {
     // 文本消息类型
-    private String content;
+    private String Content;
 
     public String getContent() {
-        return content;
+        return Content;
     }
 
     public void setContent(String content) {
-        this.content = content;
+        this.Content = content;
     }
 }

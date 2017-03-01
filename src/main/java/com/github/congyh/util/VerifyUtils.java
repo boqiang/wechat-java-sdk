@@ -10,7 +10,7 @@ import java.util.Arrays;
  */
 public class VerifyUtils {
     // 个人添加服务器配置的时候填写的字符
-    private static final String token = AppConfig.getInstance().getProps().getProperty("token");
+    private static final String TOKEN = AppConfig.getInstance().getProps().getProperty("token");
 
     /**
      * 校验请求(为了确认请求来自微信服务器)
@@ -21,8 +21,7 @@ public class VerifyUtils {
      * @return true 校验成功 or false 校验失败
      */
     public static boolean checkSignature(String signature, String timestamp, String nonce) {
-        // out.println("token: " + VerifyUtil.token);
-        String[] strs = new String[] {"asgsgsdgsdf", timestamp, nonce};
+        String[] strs = new String[] {VerifyUtils.TOKEN, timestamp, nonce};
         Arrays.sort(strs);
         String concatedStr = strs[0].concat(strs[1]).concat(strs[2]);
         // 获取字符串的十六进制加密表示形式

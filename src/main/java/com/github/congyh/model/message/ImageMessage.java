@@ -7,23 +7,23 @@ package com.github.congyh.model.message;
  */
 public class ImageMessage extends AbstractMessage {
     // 图片链接(由微信服务器生成)
-    private String picUrl;
+    private String PicUrl;
     // 图片消息媒体id, 可以调用多媒体文件下载接口拉取数据
-    private String mediaId;
+    private String MediaId;
 
     public String getPicUrl() {
-        return picUrl;
+        return PicUrl;
     }
 
     public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
+        this.PicUrl = picUrl;
     }
 
     public String getMediaId() {
-        return mediaId;
+        return MediaId;
     }
 
     public void setMediaId(String mediaId) {
-        this.mediaId = mediaId;
+        this.MediaId = mediaId;
     }
 }

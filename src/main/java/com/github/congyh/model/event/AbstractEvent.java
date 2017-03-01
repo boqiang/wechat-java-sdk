@@ -7,53 +7,53 @@ package com.github.congyh.model.event;
  */
 public abstract class AbstractEvent {
     // 开发者微信号
-    private String toUserName;
+    private String ToUserName;
     // 发送方帐号（一个OpenID）
-    private String fromUserName;
+    private String FromUserName;
     // 消息创建时间 （整型）
-    private int createTime;
+    private int CreateTime;
     // 消息类型
-    private String msgType;
+    private String MsgType;
     // 事件类型: subscribe(订阅)、unsubscribe(取消订阅)
-    private String event;
+    private String Event;
 
     public String getToUserName() {
-        return toUserName;
+        return ToUserName;
     }
 
     public void setToUserName(String toUserName) {
-        this.toUserName = toUserName;
+        this.ToUserName = toUserName;
     }
 
     public String getFromUserName() {
-        return fromUserName;
+        return FromUserName;
     }
 
     public void setFromUserName(String fromUserName) {
-        this.fromUserName = fromUserName;
+        this.FromUserName = fromUserName;
     }
 
     public int getCreateTime() {
-        return createTime;
+        return CreateTime;
     }
 
     public void setCreateTime(int createTime) {
-        this.createTime = createTime;
+        this.CreateTime = createTime;
     }
 
     public String getMsgType() {
-        return msgType;
+        return MsgType;
     }
 
     public void setMsgType(String msgType) {
-        this.msgType = msgType;
+        this.MsgType = msgType;
     }
 
     public String getEvent() {
-        return event;
+        return Event;
     }
 
     public void setEvent(String event) {
-        this.event = event;
+        this.Event = event;
     }
 }

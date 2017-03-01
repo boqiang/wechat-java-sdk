@@ -19,6 +19,7 @@ public class XStreamUtils {
         String xml = "<xml><name>李四</name><gender>男</gender>" +
             "<address>北理</address></xml>";
         out.println((Person)XStreamUtils.weChatXml2Pojo(xml, Person.class));
+
     }
 
     /**
