@@ -1,6 +1,5 @@
 package com.github.congyh.servlet;
 
-import com.github.congyh.config.AppConfig;
 import com.github.congyh.util.VerifyUtil;
 
 import javax.servlet.ServletException;
@@ -10,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static java.lang.System.out;
-
 /**
  * 请求处理Servlet
  *
@@ -20,19 +17,61 @@ import static java.lang.System.out;
 @WebServlet(urlPatterns = "/CoreServlet")
 public class CoreServlet extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-        throws ServletException, IOException {
+    /**
+     * 校验签名失败异常
+     *
+     * <p>非受检异常
+     */
+    private class checkSignatureFailedException extends RuntimeException {
 
-        /* 获取微信服务器发来的校验信息*/
+        checkSignatureFailedException(String message) {
+            super(message);
+        }
+
+    }
+
+    /**
+     * 校验请求
+
+     * <p>确认请求发起者的身份是微信服务器
+     *
+     * @param req  客户端请求
+     * @param resp 服务器端响应
+     * @throws ServletException
+     * @throws IOException
+     */
+    private void checkSignature(HttpServletRequest req, HttpServletResponse resp)
+        throws ServletException, IOException {
+        // 获取微信服务器发来的校验信息
 
         String signature = req.getParameter("signature");
         String timestamp = req.getParameter("timestamp");
         String nonce = req.getParameter("nonce");
         String echostr = req.getParameter("echostr");
 
-        if (VerifyUtil.checkSignature(signature, timestamp, nonce)) {
-            resp.getWriter().print(echostr);
+        if (!VerifyUtil.checkSignature(signature, timestamp, nonce)) {
+            throw new checkSignatureFailedException("签名校验错误");
         }
+        resp.getWriter().print(echostr);
+    }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+        throws ServletException, IOException {
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+        throws ServletException, IOException {
+        super.doPost(req, resp);
+    }
+
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp)
+        throws ServletException, IOException {
+
+        resp.setContentType("text/html;charset=utf-8");
+        checkSignature(req, resp);
+        super.service(req, resp);
     }
 }
