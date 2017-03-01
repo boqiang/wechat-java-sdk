@@ -1,6 +1,6 @@
 package com.github.congyh.servlet;
 
-import com.github.congyh.util.VerifyUtil;
+import com.github.congyh.util.VerifyUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,7 +49,7 @@ public class CoreServlet extends HttpServlet {
         String nonce = req.getParameter("nonce");
         String echostr = req.getParameter("echostr");
 
-        if (!VerifyUtil.checkSignature(signature, timestamp, nonce)) {
+        if (!VerifyUtils.checkSignature(signature, timestamp, nonce)) {
             throw new checkSignatureFailedException("签名校验错误");
         }
         resp.getWriter().print(echostr);
@@ -69,7 +69,7 @@ public class CoreServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
-
+        req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
         checkSignature(req, resp);
         super.service(req, resp);

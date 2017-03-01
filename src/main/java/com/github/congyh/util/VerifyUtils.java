@@ -8,7 +8,7 @@ import java.util.Arrays;
 /**
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
-public class VerifyUtil {
+public class VerifyUtils {
     // 个人添加服务器配置的时候填写的字符
     private static final String token = AppConfig.getInstance().getProps().getProperty("token");
 
