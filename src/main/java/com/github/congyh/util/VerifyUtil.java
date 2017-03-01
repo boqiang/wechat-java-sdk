@@ -28,16 +28,6 @@ public class VerifyUtil {
         // 获取字符串的十六进制加密表示形式
         String cipheredStr = DigestUtils.sha1Hex(concatedStr.getBytes());
 
-//        String cipheredStr = null;
-//        try {
-//            MessageDigest md = MessageDigest.getInstance("SHA-1");
-//            byte[] ciphered = md.digest(concatedStr.getBytes());
-//            cipheredStr = new String(ciphered);
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return cipheredStr != null && cipheredStr.equals(signature);
         return cipheredStr.equals(signature);
     }
 }
