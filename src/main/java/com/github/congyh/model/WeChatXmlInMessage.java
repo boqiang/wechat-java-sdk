@@ -40,6 +40,9 @@ public class WeChatXmlInMessage extends AbstractMessage {
     // 图片消息媒体id, 可以调用多媒体文件下载接口拉取数据
     @XStreamAlias("MediaId")
     private String mediaId;
+    // 语音格式, 如amr, peex等
+    @XStreamAlias("Format")
+    private String format;
     // 事件类型: subscribe(订阅)、unsubscribe(取消订阅)
     @XStreamAlias("Event")
     private String event;
@@ -49,6 +52,14 @@ public class WeChatXmlInMessage extends AbstractMessage {
     // 二维码的ticket, 可用来换取二维码图片
     @XStreamAlias("Ticket")
     private String ticket;
+
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
 
     public String getToUserName() {
         return toUserName;
