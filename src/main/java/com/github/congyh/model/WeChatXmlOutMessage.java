@@ -32,8 +32,8 @@ public class WeChatXmlOutMessage extends AbstractMessage {
     private String ticket;
 
     public WeChatXmlOutMessage(WeChatXmlInMessage inMessage) {
-        this.toUserName = inMessage.getFromUserName();
         this.fromUserName = inMessage.getToUserName();
+        this.toUserName = inMessage.getFromUserName();
         // debug
         this.msgType = WeChatConst.RESP_MESSAGE_TYPE_TEXT;
     }

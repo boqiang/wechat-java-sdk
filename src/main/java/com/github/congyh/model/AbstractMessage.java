@@ -3,9 +3,10 @@ package com.github.congyh.model;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
+ * 消息基类
+ *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
-@XStreamAlias("xml")
 public abstract class AbstractMessage {
     // 开发者微信号(接收时) or 发送方帐号（一个OpenID）(发送时)
     @XStreamAlias("ToUserName")

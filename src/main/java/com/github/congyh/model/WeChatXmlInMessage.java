@@ -5,7 +5,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 /**
  * 微信公众平台消息
  *
- * <p>包含了公众平台所有消息中的所有字段类型(随微信版本仍在不断更新中),
+ * <p>包含了公众平台所有请求消息中的所有字段类型(随微信版本仍在不断更新中),
  * 之所以统一整合在这里, 是为了使用XStream来解析xml时, 保证所有可能的标签
  * 都能被解析(信息中未包含的标签会自动设置为null).
  *
@@ -211,5 +211,29 @@ public class WeChatXmlInMessage extends AbstractMessage {
 
     public void setTicket(String ticket) {
         this.ticket = ticket;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getPrecision() {
+        return precision;
+    }
+
+    public void setPrecision(Double precision) {
+        this.precision = precision;
     }
 }
