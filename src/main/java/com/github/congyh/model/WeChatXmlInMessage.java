@@ -43,6 +43,30 @@ public class WeChatXmlInMessage extends AbstractMessage {
     // 语音格式, 如amr, peex等
     @XStreamAlias("Format")
     private String format;
+    // 视频消息缩略图的媒体id, 可以调用多媒体文件下载接口拉取数据
+    @XStreamAlias("ThumbMediaId")
+    private String thumbMediaId;
+    // 地理位置纬度
+    @XStreamAlias("Location_X")
+    private Double locationX;
+    // 地理位置经度
+    @XStreamAlias("Location_Y")
+    private Double locationY;
+    // 地图缩放大小
+    @XStreamAlias("Scale")
+    private Double scale;
+    // 地理位置信息
+    @XStreamAlias("Label")
+    private String label;
+    // 消息标题
+    @XStreamAlias("Title")
+    private String title;
+    // 消息描述
+    @XStreamAlias("Description")
+    private String description;
+    // 消息连接
+    @XStreamAlias("Url")
+    private String url;
     // 事件类型: subscribe(订阅)、unsubscribe(取消订阅)
     @XStreamAlias("Event")
     private String event;
