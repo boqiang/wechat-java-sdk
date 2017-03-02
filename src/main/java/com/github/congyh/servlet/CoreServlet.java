@@ -1,6 +1,7 @@
 package com.github.congyh.servlet;
 
 import com.github.congyh.model.WeChatXmlInMessage;
+import com.github.congyh.model.WeChatXmlOutMessage;
 import com.github.congyh.util.VerifyUtils;
 import com.github.congyh.util.WeChatConst;
 import com.github.congyh.util.XmlUtils;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 
 /**
  * 请求处理Servlet
@@ -27,9 +29,9 @@ public class CoreServlet extends HttpServlet {
      *
      * <p>非受检异常
      */
-    private class checkSignatureFailedException extends RuntimeException {
+    private class CheckSignatureFailedException extends RuntimeException {
 
-        checkSignatureFailedException(String message) {
+        CheckSignatureFailedException(String message) {
             super(message);
         }
 
@@ -41,23 +43,22 @@ public class CoreServlet extends HttpServlet {
      * <p>确认请求发起者的身份是微信服务器
      *
      * @param req  客户端请求
-     * @param resp 服务器端响应
+     * @return true 校验成功 or 抛出 {@code CheckSignatureFailedException}异常
      * @throws ServletException
      * @throws IOException
      */
-    private void checkSignature(HttpServletRequest req, HttpServletResponse resp)
+    private boolean checkSignature(HttpServletRequest req)
         throws ServletException, IOException {
         // 获取微信服务器发来的校验信息
 
         String signature = req.getParameter("signature");
         String timestamp = req.getParameter("timestamp");
         String nonce = req.getParameter("nonce");
-        String echostr = req.getParameter("echostr");
 
         if (!VerifyUtils.checkSignature(signature, timestamp, nonce)) {
-            throw new checkSignatureFailedException("签名校验错误");
+            throw new CheckSignatureFailedException("签名校验错误");
         }
-        resp.getWriter().print(echostr);
+        return true;
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -68,11 +69,11 @@ public class CoreServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
-//        super.doPost(req, resp);
         WeChatXmlInMessage inMessage = getMessage(req);
+        WeChatXmlOutMessage outMessage = new WeChatXmlOutMessage(inMessage);
         String respContent;
         final String msgType = inMessage.getMsgType();
-        // TODO 暂时只支持文字和图片两种请求消息的响应
+        // TODO 暂时只支持文字和图片两种请求消息的响应为文字方式
         // 后期可以考虑替换成策略模式
         if (msgType.equals(WeChatConst.REQ_MESSAGE_TYPE_TEXT)) {
             respContent = "您发送的是文字消息";
@@ -81,7 +82,9 @@ public class CoreServlet extends HttpServlet {
         } else {
             respContent = "暂不支持此类消息";
         }
-        resp.getWriter().write(respContent);
+        outMessage.setCreateTime(new Date().getTime());
+        outMessage.setContent(respContent);
+        resp.getWriter().print(XmlUtils.pojo2WeChatXml(outMessage));
     }
 
     @Override
@@ -89,20 +92,21 @@ public class CoreServlet extends HttpServlet {
         throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
-        checkSignature(req, resp);
-        super.service(req, resp);
-    }
-
-    /**
-     * 获取用户请求消息类型
-     *
-     * @param req 用户请求
-     * @return 用户请求消息类型
-     */
-    @Deprecated
-    public static String getMsgType(HttpServletRequest req) {
-        // TODO
-        return null;
+        if (checkSignature(req)) {
+        // debug
+//        if (true) {
+            String echostr = req.getParameter("echostr");
+            final String reqMethod = req.getMethod();
+            // TODO 目前只支持对GET和POST两种方法响应
+            if (reqMethod.equals("GET")) {
+                resp.getWriter().print(echostr);
+            } else if (reqMethod.equals("POST")){
+                doPost(req, resp);
+            } else {
+                throw new UnsupportedOperationException("不支持此种HTTP方法!");
+            }
+        }
+//        super.service(req, resp);
     }
 
     /**
