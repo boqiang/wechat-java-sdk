@@ -43,6 +43,9 @@ public class WeChatXmlInMessage extends AbstractMessage {
     // 语音格式, 如amr, peex等
     @XStreamAlias("Format")
     private String format;
+    // 语音识别结果
+    @XStreamAlias("Recognition")
+    private String recognition;
     // 视频消息缩略图的媒体id, 可以调用多媒体文件下载接口拉取数据
     @XStreamAlias("ThumbMediaId")
     private String thumbMediaId;
@@ -76,6 +79,78 @@ public class WeChatXmlInMessage extends AbstractMessage {
     // 二维码的ticket, 可用来换取二维码图片
     @XStreamAlias("Ticket")
     private String ticket;
+
+    public String getRecognition() {
+        return recognition;
+    }
+
+    public void setRecognition(String recognition) {
+        this.recognition = recognition;
+    }
+
+    public String getThumbMediaId() {
+        return thumbMediaId;
+    }
+
+    public void setThumbMediaId(String thumbMediaId) {
+        this.thumbMediaId = thumbMediaId;
+    }
+
+    public Double getLocationX() {
+        return locationX;
+    }
+
+    public void setLocationX(Double locationX) {
+        this.locationX = locationX;
+    }
+
+    public Double getLocationY() {
+        return locationY;
+    }
+
+    public void setLocationY(Double locationY) {
+        this.locationY = locationY;
+    }
+
+    public Double getScale() {
+        return scale;
+    }
+
+    public void setScale(Double scale) {
+        this.scale = scale;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getFormat() {
         return format;
