@@ -79,6 +79,15 @@ public class WeChatXmlInMessage extends AbstractMessage {
     // 二维码的ticket, 可用来换取二维码图片
     @XStreamAlias("Ticket")
     private String ticket;
+    // 地理位置维度
+    @XStreamAlias("Latitude")
+    private Double latitude;
+    // 地理位置经度
+    @XStreamAlias("Longitude")
+    private Double longitude;
+    // 地理位置精度
+    @XStreamAlias("Precision")
+    private Double precision;
 
     public String getRecognition() {
         return recognition;
