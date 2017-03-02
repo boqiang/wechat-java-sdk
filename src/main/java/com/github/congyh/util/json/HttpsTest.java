@@ -1,6 +1,7 @@
 package com.github.congyh.util.json;
 
 import com.github.congyh.model.WeChatAccessToken;
+import com.github.congyh.util.HttpsUtils;
 import com.github.congyh.util.MyX509TrustManager;
 import com.github.congyh.util.WeChatConst;
 
@@ -12,12 +13,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.SecureRandom;
+import java.security.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,10 +23,13 @@ import java.util.logging.Logger;
  *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
+@Deprecated
 public class HttpsTest {
     private static final Logger logger = Logger.getLogger(HttpsTest.class.getName());
 
-    public static void main(String[] args) throws IOException, NoSuchProviderException, NoSuchAlgorithmException, KeyManagementException {
+    public static void main(String[] args)
+        throws IOException, NoSuchProviderException,
+        NoSuchAlgorithmException, KeyManagementException, KeyStoreException {
         String tokenUrl = WeChatConst.ACCESS_TOKEN_URL_PREFIX
             .concat("grant_type=client_credential&appid=")
             .concat(WeChatConst.APPID)
@@ -58,6 +58,12 @@ public class HttpsTest {
         isr.close();
         in.close();
         conn.disconnect();
-        logger.log(Level.INFO, GsonBuilderInitializer.builder.create().fromJson(buffer.toString(), WeChatAccessToken.class).toString());
+        logger.log(Level.INFO, GsonBuilderInitializer
+            .builder.create().fromJson(buffer.toString(), WeChatAccessToken.class).toString());
+
+        logger.log(Level.INFO, GsonBuilderInitializer
+            .builder.create().fromJson(HttpsUtils.get(tokenUrl), WeChatAccessToken.class).toString());
+
+
     }
 }
