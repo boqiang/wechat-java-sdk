@@ -84,7 +84,7 @@ public class CoreServlet extends HttpServlet {
         }
         outMessage.setCreateTime(new Date().getTime());
         outMessage.setContent(respContent);
-        resp.getWriter().print(XmlUtils.pojo2WeChatXml(outMessage));
+        resp.getWriter().print(XmlUtils.pojo2Xml(outMessage));
     }
 
     @Override
@@ -122,7 +122,7 @@ public class CoreServlet extends HttpServlet {
         String xml = new String(readAllBytes(in));
 
         return (WeChatXmlInMessage) XmlUtils
-            .weChatXml2Pojo(xml, WeChatXmlInMessage.class);
+            .xml2Pojo(xml, WeChatXmlInMessage.class);
     }
 
     /**
