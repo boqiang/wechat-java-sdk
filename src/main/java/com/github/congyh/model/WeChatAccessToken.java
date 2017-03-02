@@ -27,4 +27,12 @@ public class WeChatAccessToken {
     public void setExpiresIn(int expiresIn) {
         this.expiresIn = expiresIn;
     }
+
+    @Override
+    public String toString() {
+        return "WeChatAccessToken{" +
+            "accessToken='" + accessToken + '\'' +
+            ", expiresIn=" + expiresIn +
+            '}';
+    }
 }
