@@ -1,21 +1,14 @@
 package com.github.congyh.model;
 
+import com.github.congyh.util.WeChatConst;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
- * 微信公众平台消息
- *
- * <p>包含了公众平台所有消息中的所有字段类型(随微信版本仍在不断更新中),
- * 之所以统一整合在这里, 是为了使用XStream来解析xml时, 保证所有可能的标签
- * 都能被解析(信息中未包含的标签会自动设置为null).
- *
- * <p>倘若将各种消息类型进行细分, 需要在xml解析过程添加额外的逻辑, 影响
- * 程序效率, 且不易维护.
- *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
+ * @see WeChatXmlInMessage
  */
 @XStreamAlias("xml")
-public class WeChatXmlInMessage extends AbstractMessage {
+public class WeChatXmlOutMessage extends AbstractMessage {
     // 开发者微信号(接收时) or 发送方帐号（一个OpenID）(发送时)
     @XStreamAlias("ToUserName")
     private String toUserName;
@@ -49,6 +42,13 @@ public class WeChatXmlInMessage extends AbstractMessage {
     // 二维码的ticket, 可用来换取二维码图片
     @XStreamAlias("Ticket")
     private String ticket;
+
+    public WeChatXmlOutMessage(WeChatXmlInMessage inMessage) {
+        this.toUserName = inMessage.getFromUserName();
+        this.fromUserName = inMessage.getToUserName();
+        // debug
+        this.msgType = WeChatConst.RESP_MESSAGE_TYPE_TEXT;
+    }
 
     public String getToUserName() {
         return toUserName;
