@@ -20,7 +20,7 @@ public class VerifyUtils {
     public static boolean checkSignature(String signature, String timestamp, String nonce) {
         String[] strs = new String[] {WeChatConst.TOKEN, timestamp, nonce};
         Arrays.sort(strs);
-        String concatedStr = strs[0].concat(strs[1]).concat(strs[2]);
+        String concatedStr = strs[0] + strs[1] + strs[2];
         // 获取字符串的十六进制加密表示形式
         String cipheredStr = DigestUtils.sha1Hex(concatedStr.getBytes());
 

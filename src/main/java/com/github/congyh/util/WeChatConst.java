@@ -54,6 +54,7 @@ public class WeChatConst {
 
     // 获取access_token的url前缀
     public static final String ACCESS_TOKEN_URL_PREFIX = "https://api.weixin.qq.com/cgi-bin/token?";
+    public static final String MENU_CREATE_URL_PREFIX = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=";
     public static final String TOKEN = PROPERTIES.getProperty("token");
     public static final String APPID = PROPERTIES.getProperty("appid");
     public static final String SECRET = PROPERTIES.getProperty("secret");
