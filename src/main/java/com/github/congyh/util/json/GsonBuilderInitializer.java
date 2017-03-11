@@ -1,6 +1,7 @@
 package com.github.congyh.util.json;
 
 import com.github.congyh.model.WeChatAccessToken;
+import com.github.congyh.model.menu.ButtonWithSubbuttons;
 import com.google.gson.*;
 
 import java.lang.reflect.Type;
@@ -17,9 +18,10 @@ public class GsonBuilderInitializer {
 
     static {
         // 这里注册各种类型适配器.
-        // TODO 目前仅对access_token的反序列化进行了自定义, 理论上可以添加无限个配置类.
         builder.registerTypeAdapter(WeChatAccessToken.class,
             new WeChatAccessTokenDeserializer());
+        // builder.registerTypeAdapter(ButtonWithSubbuttons.class, new ButtonWithSubbuttonsAdapter());
+        // TODO 实际上无需自己进行注册, 直接用注解在需要在反序列化时标注别名的字段上面设置别名即可.
     }
 
     /**
