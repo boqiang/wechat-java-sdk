@@ -6,8 +6,11 @@
 
     <groupId>com.github.congyh</groupId>
     <artifactId>wechat-public-platform</artifactId>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <version>0.1</version>
+    <modules>
+        <module>wexinjavatoolsdemo</module>
+    </modules>
 
     <name>WeChat Public Platform</name>
     <description>Personal Wechat public platform.</description>
