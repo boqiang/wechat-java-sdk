@@ -20,7 +20,6 @@ public class GsonBuilderInitializer {
         // 这里注册各种类型适配器.
         builder.registerTypeAdapter(WeChatAccessToken.class,
             new WeChatAccessTokenDeserializer());
-        // builder.registerTypeAdapter(ButtonWithSubbuttons.class, new ButtonWithSubbuttonsAdapter());
         // TODO 实际上无需自己进行注册, 直接用注解在需要在反序列化时标注别名的字段上面设置别名即可.
     }
 

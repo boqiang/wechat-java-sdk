@@ -5,6 +5,7 @@ import com.github.congyh.model.menu.*;
 import com.github.congyh.util.HttpsUtils;
 import com.github.congyh.util.MyX509TrustManager;
 import com.github.congyh.util.WeChatConst;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.security.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -100,7 +102,8 @@ public class HttpsTest {
         String jsonMenu = GsonBuilderInitializer.builder.create().toJson(menu);
         logger.info(jsonMenu);
 
-        String returnJson = HttpsUtils.post(postURL, new StringEntity(jsonMenu));
+        // 注意: 这里如果选择ContentType是text plain的话, 中文会出现乱码, JSON字符串需要设置为APPLICATION_JSON
+        String returnJson = HttpsUtils.post(postURL, new StringEntity(jsonMenu, ContentType.APPLICATION_JSON));
         logger.info(returnJson);
     }
 }
