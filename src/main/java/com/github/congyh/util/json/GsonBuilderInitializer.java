@@ -16,6 +16,8 @@ public class GsonBuilderInitializer {
     public static final GsonBuilder builder = new GsonBuilder();
 
     static {
+        // 这里注册各种类型适配器.
+        // TODO 目前仅对access_token的反序列化进行了自定义, 理论上可以添加无限个配置类.
         builder.registerTypeAdapter(WeChatAccessToken.class,
             new WeChatAccessTokenDeserializer());
     }
