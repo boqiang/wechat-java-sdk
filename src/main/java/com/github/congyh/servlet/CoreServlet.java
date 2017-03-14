@@ -71,14 +71,25 @@ public class CoreServlet extends HttpServlet {
         throws ServletException, IOException {
         WeChatXmlInMessage inMessage = getMessage(req);
         WeChatXmlOutMessage outMessage = new WeChatXmlOutMessage(inMessage);
-        String respContent;
+        String respContent = "";
         final String msgType = inMessage.getMsgType();
-        // TODO 暂时只支持文字和图片两种请求消息的响应为文字方式
-        // 后期可以考虑替换成策略模式
+        // TODO 在这里添加事件的处理
         if (msgType.equals(WeChatConst.REQ_MESSAGE_TYPE_TEXT)) {
             respContent = "您发送的是文字消息";
         } else if (msgType.equals(WeChatConst.REQ_MESSAGE_TYPE_IMAGE)) {
             respContent = "您发送的是图片消息";
+        } else if (msgType.equals(WeChatConst.REQ_MESSAGE_TYPE_EVENT)) {
+            String event = inMessage.getEvent();
+            String eventKey = inMessage.getEventKey();
+            if (event.equals(WeChatConst.EVENT_TYPE_CLICK)) {
+                if (eventKey.equals("V1001_GREETINGS")) {
+                    respContent = "祝您有美好的一天!";
+                } else if (eventKey.equals("V1001_THUMB_UP")) {
+                    respContent = "请联系微信号: congyihao 讨论详情";
+                } else {
+                    respContent = "暂不支持此类消息!";
+                }
+            }
         } else {
             respContent = "暂不支持此类消息";
         }

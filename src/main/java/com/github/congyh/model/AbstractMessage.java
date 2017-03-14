@@ -17,7 +17,7 @@ public abstract class AbstractMessage {
     // 消息创建时间 （整型）
     @XStreamAlias("CreateTime")
     protected Long createTime;
-    // 消息类型
+    // 消息类型: 分为基本消息类型, 事件类型.
     @XStreamAlias("MsgType")
     protected String msgType;
 
