@@ -40,8 +40,8 @@ public class WeChatConst {
     public static final String EVENT_TYPE_SUBSCRIBE = "subscribe";
     public static final String EVENT_TYPE_SCAN = "scan";
     public static final String EVENT_TYPE_LOCATION = "location";
-    public static final String EVENT_TYPE_CLICK = "click";
-    public static final String EVENT_TYPE_VIEW = "view";
+    public static final String EVENT_TYPE_CLICK = "CLICK";
+    public static final String EVENT_TYPE_VIEW = "VIEW";
 
     /*定义服务器响应消息类型*/
 
