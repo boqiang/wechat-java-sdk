@@ -90,7 +90,7 @@ public class CoreServlet extends HttpServlet {
                     respContent = "暂不支持此类消息!";
                 }
             } else {
-                respContent = "暂不支持此类消息!!!";
+                respContent = "暂不支持此类消息!!!" + event;
             }
         } else {
             respContent = "暂不支持此类消息";
