@@ -71,7 +71,7 @@ public class CoreServlet extends HttpServlet {
         throws ServletException, IOException {
         WeChatXmlInMessage inMessage = getMessage(req);
         WeChatXmlOutMessage outMessage = new WeChatXmlOutMessage(inMessage);
-        String respContent = "";
+        String respContent;
         final String msgType = inMessage.getMsgType();
         // TODO 在这里添加事件的处理
         if (msgType.equals(WeChatConst.REQ_MESSAGE_TYPE_TEXT)) {
@@ -84,11 +84,13 @@ public class CoreServlet extends HttpServlet {
             if (event.equals(WeChatConst.EVENT_TYPE_CLICK)) {
                 if (eventKey.equals("V1001_GREETINGS")) {
                     respContent = "祝您有美好的一天!";
-                } else if (eventKey.equals("V1001_THUMB_UP")) {
+                } else if (eventKey.equals("V1001_JOIN_US")) {
                     respContent = "请联系微信号: congyihao 讨论详情";
                 } else {
                     respContent = "暂不支持此类消息!";
                 }
+            } else {
+                respContent = "暂不支持此类消息!!!";
             }
         } else {
             respContent = "暂不支持此类消息";
