@@ -73,7 +73,10 @@ public class CoreServlet extends HttpServlet {
         WeChatXmlOutMessage outMessage = new WeChatXmlOutMessage(inMessage);
         String respContent;
         final String msgType = inMessage.getMsgType();
-        // TODO 在这里添加事件的处理
+        // TODO 将消息的处理分离出去, 分成Service, 等等. 用Router弄走.
+        // 理想状态下是类似如下的调用:
+        // WeChatXmlOutMessage outMessage = this.router.route(inMessage);
+        // 也就是根据inMessage生成一个outMessage, 然后直接返回.
         if (msgType.equals(WeChatConst.REQ_MESSAGE_TYPE_TEXT)) {
             respContent = "您发送的是文字消息";
         } else if (msgType.equals(WeChatConst.REQ_MESSAGE_TYPE_IMAGE)) {
