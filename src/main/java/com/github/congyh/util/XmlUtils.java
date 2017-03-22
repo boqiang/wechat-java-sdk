@@ -7,6 +7,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.XppDriver;
 
+import java.io.InputStream;
 import java.io.Writer;
 
 import static java.lang.System.out;
@@ -19,15 +20,7 @@ import static java.lang.System.out;
 public class XmlUtils {
     private static final XStream ENHANCED_XSTREAM = getEnhancedXStream();
 
-    public static void main(String... args) {
-        Person person = new Person(
-            "张三", "男", "北邮");
-        out.println(XmlUtils.pojo2Xml(person));
-        String xml = "<xml><gender>男</gender>" +
-            "<address><![CDATA[北理]]></address></xml>";
-        out.println((Alien) XmlUtils.xml2Pojo(xml, Alien.class));
 
-    }
 
     /**
      * 获得能够解析CDATA的XStream
@@ -81,16 +74,39 @@ public class XmlUtils {
      *
      * @param xml pojo的xml表示形式
      * @param cls 目标pojo对象的类
+     * @param <T> 目标Pojo对象的类
      * @return pojo对象(需要手动进行格式转换)
      */
-    public static Object xml2Pojo(String xml, Class<?> cls) {
+    @SuppressWarnings("unchecked")
+    public static <T> T xml2Pojo(String xml, Class<T> cls) {
         ENHANCED_XSTREAM.processAnnotations(cls);
-        return ENHANCED_XSTREAM.fromXML(xml);
+        return (T) ENHANCED_XSTREAM.fromXML(xml);
     }
 
     /**
-     * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
+     * xml字节输入流转pojo
+     *
+     * @param in xml字节输入流
+     * @param cls 目标Pojo对象的类
+     * @param <T> 目标Pojo对象的类
+     * @return 目标实例对象
      */
+    @SuppressWarnings("unchecked")
+    public static <T> T xml2Pojo(InputStream in, Class<T> cls) {
+        ENHANCED_XSTREAM.processAnnotations(cls);
+        return (T) ENHANCED_XSTREAM.fromXML(in);
+    }
+
+    public static void main(String... args) {
+        Person person = new Person(
+            "张三", "男", "北邮");
+        out.println(XmlUtils.pojo2Xml(person));
+        String xml = "<xml><gender>男</gender>" +
+            "<address><![CDATA[北理]]></address></xml>";
+        out.println(XmlUtils.xml2Pojo(xml, Alien.class));
+
+    }
+
     @XStreamAlias("xml")
     private static class Person {
         @XStreamAlias("Name")
@@ -138,9 +154,6 @@ public class XmlUtils {
         }
     }
 
-    /**
-     * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
-     */
     @XStreamAlias("xml")
     private static class Alien {
         @XStreamAlias("Name")
