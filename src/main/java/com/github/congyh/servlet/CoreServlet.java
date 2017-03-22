@@ -35,18 +35,18 @@ public class CoreServlet extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
 
-//        // 如果校验不成功, 说明是非微信服务器消息, 返回警告信息
-//        if (!this.weChatService.checkSignature(req)) {
-//            resp.getWriter().print("警告: 请立即停止非法行为!");
-//            return;
-//        }
-//
-//        String echoStr = req.getParameter("echostr");
-//        // 如果请求中这个字段有值, 那么就是一个简单的"GET"类型的验证请求,
-//        if (StringUtils.isNotBlank(echoStr)) {
-//            resp.getWriter().print(echoStr);
-//            return;
-//        }
+        // 如果校验不成功, 说明是非微信服务器消息, 返回警告信息
+        if (!this.weChatService.checkSignature(req)) {
+            resp.getWriter().print("警告: 请立即停止非法行为!");
+            return;
+        }
+
+        String echoStr = req.getParameter("echostr");
+        // 如果请求中这个字段有值, 那么就是一个简单的"GET"类型的验证请求,
+        if (StringUtils.isNotBlank(echoStr)) {
+            resp.getWriter().print(echoStr);
+            return;
+        }
 
         doPost(req, resp);
     }
