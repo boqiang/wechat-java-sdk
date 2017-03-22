@@ -7,6 +7,7 @@ import com.github.congyh.service.WeChatMessageHandler;
 import com.github.congyh.service.WeChatService;
 import com.github.congyh.service.impl.WeChatServiceImpl;
 import com.github.congyh.util.XmlUtils;
+import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,8 +42,8 @@ public class CoreServlet extends HttpServlet {
         }
 
         String echoStr = req.getParameter("echostr");
-        // 如果请求中存在这个字段, 那么就是一个简单的"GET"类型的验证请求,
-        if (echoStr != null) {
+        // 如果请求中这个字段有值, 那么就是一个简单的"GET"类型的验证请求,
+        if (StringUtils.isNotBlank(echoStr)) {
             resp.getWriter().print(echoStr);
             return;
         }
