@@ -27,10 +27,10 @@ public interface WeChatService {
      * <p>确认请求发起者的身份是微信服务器
      *
      * @param req  客户端请求
-     * @return true 校验成功 or 抛出 {@code CheckSignatureFailedException}异常
+     * @return true 校验成功 or false 失败
      * @throws ServletException
      * @throws IOException
      */
-    boolean checkSignature(HttpServletRequest req)
+    public boolean checkSignature(HttpServletRequest req)
         throws ServletException, IOException;
 }

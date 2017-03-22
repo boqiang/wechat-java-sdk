@@ -1,8 +1,11 @@
 package com.github.congyh.api;
 
+import com.github.congyh.exception.WeChatException;
 import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.model.WeChatXmlOutMessage;
 import com.github.congyh.service.WeChatMessageHandler;
+import com.github.congyh.service.impl.SimpleTextHandler;
+import com.github.congyh.util.WeChatConst;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,6 +22,12 @@ import java.util.List;
  */
 public class WeChatMessageRouter {
     private static final WeChatMessageRouter INSTANCE = new WeChatMessageRouter();
+
+    static {
+        INSTANCE.addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
+            .useHandler(new SimpleTextHandler())
+            .endRule();
+    }
     // 规则列表
     private final List<WeChatMessageRouteRule> rules = new LinkedList<>();
 
@@ -48,8 +57,7 @@ public class WeChatMessageRouter {
                 return rule.getHandler();
             }
         }
-        // TODO 没有找到匹配的handler, 怎么处理?
-        return null;
+        throw new WeChatException("没有匹配的服务器消息处理器!");
     }
 
     public List<WeChatMessageRouteRule> getRules() {

@@ -1,15 +1,16 @@
 package com.github.congyh.service.impl;
 
-import com.github.congyh.exception.CheckSignatureFailedException;
 import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.model.WeChatXmlOutMessage;
 import com.github.congyh.service.WeChatMessageHandler;
 import com.github.congyh.service.WeChatService;
-import com.github.congyh.util.VerifyUtils;
+import com.github.congyh.util.WeChatConst;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * 微信公众平台后台中控Service
@@ -44,18 +45,25 @@ public class WeChatServiceImpl implements WeChatService {
     }
 
 
+    /**
+     * 校验请求(为了确认请求来自微信服务器)
+     *
+     * @param req Http请求
+     * @return true 校验成功 or false 校验失败
+     */
     @Override
     public boolean checkSignature(HttpServletRequest req)
         throws ServletException, IOException {
-        // 获取微信服务器发来的校验信息
-
         String signature = req.getParameter("signature");
         String timestamp = req.getParameter("timestamp");
         String nonce = req.getParameter("nonce");
 
-        if (!VerifyUtils.checkSignature(signature, timestamp, nonce)) {
-            throw new CheckSignatureFailedException("签名校验错误");
-        }
-        return true;
+        String[] strs = new String[] {WeChatConst.TOKEN, timestamp, nonce};
+        Arrays.sort(strs);
+        String concatedStr = strs[0] + strs[1] + strs[2];
+        // 获取字符串的十六进制加密表示形式
+        String cipheredStr = DigestUtils.sha1Hex(concatedStr.getBytes());
+
+        return cipheredStr.equals(signature);
     }
 }
