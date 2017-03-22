@@ -7,9 +7,9 @@ import java.util.Properties;
 /**
  * 微信公众平台常量汇总, 包括以下分类:
  * <ul>
- *     <li>用户请求消息类型</li>
+ *     <li>服务器消息类型</li>
  *     <li>用户事件类型</li>
- *     <li>服务器响应消息类型</li>
+ *     <li>回复消息类型</li>
  *     <li>配置项(加载自config.properties)</li>
  * </ul>
  *
@@ -22,6 +22,8 @@ public class WeChatConst {
     static {
         loadConfig();
     }
+
+    private WeChatConst() {}
 
     /*定义用户请求消息类型*/
 
