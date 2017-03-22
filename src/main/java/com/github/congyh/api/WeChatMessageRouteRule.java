@@ -5,7 +5,6 @@ package com.github.congyh.api;
  */
 
 import com.github.congyh.model.WeChatXmlInMessage;
-import com.github.congyh.service.WeChatMessageHandler;
 
 /**
  * 具体的路由规则

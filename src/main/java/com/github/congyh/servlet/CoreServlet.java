@@ -3,9 +3,9 @@ package com.github.congyh.servlet;
 import com.github.congyh.api.WeChatMessageRouter;
 import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.model.WeChatXmlOutMessage;
-import com.github.congyh.service.WeChatMessageHandler;
-import com.github.congyh.service.WeChatService;
-import com.github.congyh.service.impl.WeChatServiceImpl;
+import com.github.congyh.api.WeChatMessageHandler;
+import com.github.congyh.api.WeChatService;
+import com.github.congyh.api.impl.WeChatServiceImpl;
 import com.github.congyh.util.XmlUtils;
 import org.apache.commons.lang.StringUtils;
 

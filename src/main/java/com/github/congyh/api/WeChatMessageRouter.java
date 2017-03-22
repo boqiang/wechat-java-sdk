@@ -2,10 +2,7 @@ package com.github.congyh.api;
 
 import com.github.congyh.exception.WeChatException;
 import com.github.congyh.model.WeChatXmlInMessage;
-import com.github.congyh.model.WeChatXmlOutMessage;
-import com.github.congyh.service.WeChatMessageHandler;
-import com.github.congyh.service.impl.SimpleTextHandler;
-import com.github.congyh.util.WeChatConst;
+import com.github.congyh.api.impl.SimpleTextHandler;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -3,26 +3,14 @@ package com.github.congyh.util.json;
 import com.github.congyh.model.WeChatAccessToken;
 import com.github.congyh.model.menu.*;
 import com.github.congyh.util.HttpsUtils;
-import com.github.congyh.util.MyX509TrustManager;
-import com.github.congyh.util.WeChatConst;
+import com.github.congyh.api.WeChatConst;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.security.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static java.lang.System.out;
 
 /**
  * 测试通过Https get获取access_token, 并转化为WeChatAccessToken对象

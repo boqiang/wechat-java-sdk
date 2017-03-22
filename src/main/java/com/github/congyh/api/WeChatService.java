@@ -1,4 +1,4 @@
-package com.github.congyh.service;
+package com.github.congyh.api;
 
 import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.model.WeChatXmlOutMessage;

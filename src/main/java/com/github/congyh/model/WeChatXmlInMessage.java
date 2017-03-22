@@ -5,12 +5,12 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 /**
  * 微信公众平台消息
  *
- * <p>包含了公众平台所有请求消息中的所有字段类型(随微信版本仍在不断更新中),
+ * <pre>包含了公众平台所有请求消息中的所有字段类型(随微信公众平台版本仍在不断更新中),
  * 之所以统一整合在这里, 是为了使用XStream来解析xml时, 保证所有可能的标签
  * 都能被解析(信息中未包含的标签会自动设置为null).
  *
- * <p>倘若将各种消息类型进行细分, 需要在xml解析过程添加额外的逻辑, 影响
- * 程序效率, 且不易维护.
+ * 倘若将各种消息类型进行细分, 需要在xml解析过程添加额外的逻辑, 影响
+ * 程序效率, 且不易维护.</pre>
  *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */

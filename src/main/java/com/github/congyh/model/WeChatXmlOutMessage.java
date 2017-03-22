@@ -1,9 +1,16 @@
 package com.github.congyh.model;
 
-import com.github.congyh.util.WeChatConst;
+import com.github.congyh.api.WeChatConst;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
+ * 微信公众平台回复消息
+ *
+ * <pre>
+ * 包括所有回复消息类型的所有字段, 无需担心冗余字段, 在转换成xml的时候
+ * {@code null}字段会自动被忽略.
+ * </pre>
+ *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  * @see WeChatXmlInMessage
  */

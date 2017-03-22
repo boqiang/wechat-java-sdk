@@ -1,10 +1,10 @@
-package com.github.congyh.service.impl;
+package com.github.congyh.api.impl;
 
 import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.model.WeChatXmlOutMessage;
-import com.github.congyh.service.WeChatMessageHandler;
-import com.github.congyh.service.WeChatService;
-import com.github.congyh.util.WeChatConst;
+import com.github.congyh.api.WeChatMessageHandler;
+import com.github.congyh.api.WeChatService;
+import com.github.congyh.api.WeChatConst;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.ServletException;

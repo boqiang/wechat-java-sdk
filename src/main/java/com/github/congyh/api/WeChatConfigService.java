@@ -1,4 +1,4 @@
-package com.github.congyh.service;
+package com.github.congyh.api;
 
 /**
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>

@@ -1,5 +1,6 @@
 package com.github.congyh.util;
 
+import com.github.congyh.api.WeChatConst;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
