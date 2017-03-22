@@ -35,18 +35,18 @@ public class CoreServlet extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
 
-//        // 如果校验不成功, 说明是非微信服务器消息, 返回警告信息
-//        if (!this.weChatService.checkSignature(req)) {
-//            resp.getWriter().print("警告: 请立即停止非法行为!");
-//            return;
-//        }
-//
-//        String echoStr = req.getParameter("echostr");
-//        // 如果请求中这个字段有值, 那么就是一个简单的"GET"类型的验证请求,
-//        if (StringUtils.isNotBlank(echoStr)) {
-//            resp.getWriter().print(echoStr);
-//            return;
-//        }
+        // 如果校验不成功, 说明是非微信服务器消息, 返回警告信息
+        if (!this.weChatService.checkSignature(req)) {
+            resp.getWriter().print("警告: 请立即停止非法行为!");
+            return;
+        }
+
+        String echoStr = req.getParameter("echostr");
+        // 如果请求中这个字段有值, 那么就是一个简单的"GET"类型的验证请求,
+        if (StringUtils.isNotBlank(echoStr)) {
+            resp.getWriter().print(echoStr);
+            return;
+        }
 
         doPost(req, resp);
     }
@@ -59,10 +59,6 @@ public class CoreServlet extends HttpServlet {
 //        WeChatXmlOutMessage outMessage = new WeChatXmlOutMessage(inMessage);
 //        String respContent;
 //        final String msgType = inMessage.getMsgType();
-//        // TODO 将消息的处理分离出去, 分成Service, 等等. 用Router弄走.
-//        // 理想状态下是类似如下的调用:
-//        // WeChatXmlOutMessage outMessage = this.router.route(inMessage);
-//        // 也就是根据inMessage生成一个outMessage, 然后直接返回.
 //        if (msgType.equals(WeChatConst.REQ_MESSAGE_TYPE_TEXT)) {
 //            respContent = "您发送的是文字消息";
 //        } else if (msgType.equals(WeChatConst.REQ_MESSAGE_TYPE_IMAGE)) {
