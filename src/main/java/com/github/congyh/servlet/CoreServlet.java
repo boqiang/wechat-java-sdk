@@ -1,5 +1,6 @@
 package com.github.congyh.servlet;
 
+import com.github.congyh.exception.CheckSignatureFailedException;
 import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.model.WeChatXmlOutMessage;
 import com.github.congyh.util.VerifyUtils;
@@ -24,18 +25,7 @@ import java.util.Date;
 @WebServlet(urlPatterns = "/CoreServlet")
 public class CoreServlet extends HttpServlet {
 
-    /**
-     * 校验签名失败异常
-     *
-     * <p>非受检异常
-     */
-    private class CheckSignatureFailedException extends RuntimeException {
 
-        CheckSignatureFailedException(String message) {
-            super(message);
-        }
-
-    }
 
     /**
      * 校验请求
