@@ -45,6 +45,8 @@ public class WeChatXmlOutMessage extends AbstractMessage {
         this.msgType = WeChatConst.RESP_MESSAGE_TYPE_TEXT;
     }
 
+    public WeChatXmlOutMessage() {}
+
     public Long getMsgId() {
         return msgId;
     }
