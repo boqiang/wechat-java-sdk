@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
-public class WeChatDuplicateMessageDetector {
+public final class WeChatDuplicateMessageDetector {
     // 定时线程池, 用来支持线程工作
     private static final ScheduledExecutorService executor
         = Executors.newScheduledThreadPool(1);

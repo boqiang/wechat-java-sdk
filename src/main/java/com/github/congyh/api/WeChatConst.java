@@ -2,7 +2,6 @@ package com.github.congyh.api;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URLEncoder;
 import java.util.Properties;
 
 /**
@@ -16,9 +15,9 @@ import java.util.Properties;
  *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
-public class WeChatConst {
+public final class WeChatConst {
     // config.properties中定义的配置项
-    private static final Properties PROPERTIES = new Properties();
+    private static final Properties properties = new Properties();
 
     static {
         loadConfig();
@@ -58,9 +57,9 @@ public class WeChatConst {
     // 获取access_token的url前缀
     public static final String ACCESS_TOKEN_URL_PREFIX = "https://api.weixin.qq.com/cgi-bin/token?";
     public static final String MENU_CREATE_URL_PREFIX = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=";
-    public static final String TOKEN = PROPERTIES.getProperty("token");
-    public static final String APPID = PROPERTIES.getProperty("appid");
-    public static final String SECRET = PROPERTIES.getProperty("secret");
+    public static final String TOKEN = properties.getProperty("token");
+    public static final String APPID = properties.getProperty("appid");
+    public static final String SECRET = properties.getProperty("secret");
 
     public static final String OAUTU2_REDIRECT_URI = "http://congyh.duapp.com";
     // 使用此scope, 无需用户点击同意授权, 但只能获取到用户的OpenId
@@ -72,7 +71,7 @@ public class WeChatConst {
 
     private static void loadConfig() {
         try (InputStream in = WeChatConst.class.getResourceAsStream("/config.properties")) {
-            PROPERTIES.load(in);
+            properties.load(in);
         } catch (IOException e) {
             e.printStackTrace();
         }

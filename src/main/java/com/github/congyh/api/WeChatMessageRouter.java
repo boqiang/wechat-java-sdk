@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
-public class WeChatMessageRouter {
+public final class WeChatMessageRouter {
     // 规则列表
     private static final List<WeChatMessageRouteRule> rules = new LinkedList<>();
 
