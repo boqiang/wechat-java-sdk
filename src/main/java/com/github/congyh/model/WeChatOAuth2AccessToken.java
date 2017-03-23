@@ -1,16 +1,23 @@
 package com.github.congyh.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * OAuth2.0授权时获取的access_token
  *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
 public class WeChatOAuth2AccessToken {
+    @SerializedName("access_token")
     private String accessToken;
     // 过期时间
+    @SerializedName("expires_in")
     private int expiresIn;
+    @SerializedName("refresh_token")
     private String refreshToken;
+    @SerializedName("openid")
     private String openId;
+    @SerializedName("scope")
     private String scope;
 
     public String getAccessToken() {
