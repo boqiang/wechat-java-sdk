@@ -16,7 +16,7 @@ import java.util.Properties;
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
 public final class WeChatConst {
-    // config.properties中定义的配置项
+    // wechat-config.properties中定义的配置项
     private static final Properties properties = new Properties();
 
     static {
@@ -71,7 +71,7 @@ public final class WeChatConst {
 
 
     private static void loadConfig() {
-        try (InputStream in = WeChatConst.class.getResourceAsStream("/config.properties")) {
+        try (InputStream in = WeChatConst.class.getResourceAsStream("/wechat-config.properties")) {
             properties.load(in);
         } catch (IOException e) {
             e.printStackTrace();
