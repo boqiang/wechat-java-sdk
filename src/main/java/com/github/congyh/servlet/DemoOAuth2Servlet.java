@@ -26,11 +26,10 @@ import java.io.PrintWriter;
 @WebServlet("/OAuth2Servlet")
 public class DemoOAuth2Servlet extends HttpServlet {
     // TODO 这里还没有处理好WeChatOAuth2Service的单例, 注入问题, 因为除了这里还有其他地方要用到
-    // 这个Service
+    // 这个Service, 而且Servlet最好是无状态的, 这里没有协调好
     private final WeChatOAuth2Service weChatOAuth2Service = new WeChatOAuth2ServiceImpl();
     @Override
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-        // TODO 添加一个OAuth授权的样例
         req.setCharacterEncoding("utf-8");
         res.setContentType("text/html;charset=utf-8");
         // 获取授权码

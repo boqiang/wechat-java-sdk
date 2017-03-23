@@ -26,4 +26,9 @@ public class WeChatOAuth2ServiceImplTest {
         out.println(url);
     }
 
+    @Test
+    public void getOAuth2AccessToken() {
+//        weChatOAuth2Service.getOAuth2AccessToken("")
+    }
+
 }
