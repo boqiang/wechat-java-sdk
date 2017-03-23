@@ -30,7 +30,6 @@ public class WeChatServiceImpl implements WeChatService {
 //                    return handler.handle(inMessage);
 //                }
 //            });
-//            // TODO 这样紧接着就取结果的做法和同步处理没有任何差别, 如何改进?
 //            try {
 //                return res.get();
 //            } catch (InterruptedException | ExecutionException e) {
