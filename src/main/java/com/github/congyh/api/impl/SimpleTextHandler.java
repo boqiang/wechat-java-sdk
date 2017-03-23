@@ -16,7 +16,7 @@ public class SimpleTextHandler extends WeChatMessageHandler {
         return WeChatMessageBuilderFactory.buildText()
             .fromUser(inMessage.getToUserName())
             .toUser(inMessage.getFromUserName())
-            .withContent("改版后第一次生效")
+            .withContent("使用builder生成回复消息")
             .build();
     }
 }
