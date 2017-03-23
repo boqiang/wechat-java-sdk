@@ -1,14 +1,18 @@
 package com.github.congyh.util.json;
 
+import com.github.congyh.api.WeChatConst;
 import com.github.congyh.model.WeChatAccessToken;
 import com.github.congyh.model.menu.*;
 import com.github.congyh.util.HttpsUtils;
-import com.github.congyh.api.WeChatConst;
+import com.google.gson.Gson;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 
 import java.io.IOException;
-import java.security.*;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -55,8 +59,8 @@ public class HttpsTest {
 //        logger.log(Level.INFO, GsonBuilderInitializer
 //            .builder.create().fromJson(buffer.toString(), WeChatAccessToken.class).toString());
 
-        WeChatAccessToken accessToken = GsonBuilderInitializer
-            .builder.create().fromJson(HttpsUtils.get(tokenUrl), WeChatAccessToken.class);
+        WeChatAccessToken accessToken = new Gson()
+            .fromJson(HttpsUtils.get(tokenUrl), WeChatAccessToken.class);
         String postURL = WeChatConst.MENU_CREATE_URL_PREFIX + accessToken.getAccessToken();
         logger.info(postURL);
 
@@ -87,7 +91,7 @@ public class HttpsTest {
         Menu menu = new Menu();
         menu.setButtons(new Button[] {cbtn1, vbtn1, bws});
 
-        String jsonMenu = GsonBuilderInitializer.builder.create().toJson(menu);
+        String jsonMenu = new Gson().toJson(menu);
         logger.info(jsonMenu);
 
         // 注意: 这里如果选择ContentType是text plain的话, 中文会出现乱码, JSON字符串需要设置为APPLICATION_JSON

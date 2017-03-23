@@ -1,5 +1,10 @@
 package com.github.congyh.api;
 
+import com.github.congyh.model.WeChatOAuth2AccessToken;
+import com.github.congyh.model.WeChatUser;
+
+import javax.servlet.ServletRequest;
+
 /**
  * OAuth2.0授权服务
  *
@@ -21,5 +26,34 @@ package com.github.congyh.api;
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
 public interface WeChatOAuth2Service {
-    public String getOAuth2Code();
+    /**
+     * 获取OAuth2.0授权码
+     *
+     * @param req 请求
+     * @return
+     */
+    public String getOAuth2Code(ServletRequest req);
+
+    /**
+     * 获取OAuth2.0授权access_token
+     *
+     * @param code OAuth2.0授权码
+     * @return OAuth2.0 access_token
+     */
+    public WeChatOAuth2AccessToken getOAuth2AccessToken(String code);
+
+    /**
+     * 获取通过OAuth2.0授权的微信用户信息
+     *
+     * @return 微信用户信息
+     */
+    public WeChatUser getOAuth2UserInfo(WeChatOAuth2AccessToken weChatOAuth2AccessToken);
+
+    /**
+     * 构造OAuth2.0授权页面URL
+     *
+     * @param redirectURI 自定义的重定向URI
+     * @return 授权页面URL
+     */
+    String buildOAuthAuthenticationURL(String redirectURI);
 }

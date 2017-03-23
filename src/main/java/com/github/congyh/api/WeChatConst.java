@@ -62,8 +62,7 @@ public class WeChatConst {
     public static final String APPID = PROPERTIES.getProperty("appid");
     public static final String SECRET = PROPERTIES.getProperty("secret");
 
-    // TODO 这里需要添加OAuth2.0相关的一些常量
-    public static final String OAUTU2_REDIRECT_URI = "https://congyh.github.io";
+    public static final String OAUTU2_REDIRECT_URI = "http://congyh.duapp.com";
     // 使用此scope, 无需用户点击同意授权, 但只能获取到用户的OpenId
     public static final String OAUTH2_SCOPE_BASE = "snsapi_base";
     // 使用此scope, 需要用户点击同意授权, 可以获取到用户的OpenID, 用户昵称, 性别, 所在城市, 用户头像等信息

@@ -14,6 +14,7 @@ public class WeChatMessageRouteRule {
     private String event;
     private String eventKey;
     private boolean async = true; // 默认启用异步处理
+    private String content;
     private WeChatMessageRouter router = WeChatMessageRouter.getRouter();
     private WeChatMessageHandler handler;
 
@@ -34,6 +35,11 @@ public class WeChatMessageRouteRule {
 
     public WeChatMessageRouteRule withAsync(final boolean async) {
         this.async = async;
+        return this;
+    }
+
+    public WeChatMessageRouteRule withContent(final String content) {
+        this.content = content;
         return this;
     }
 
@@ -69,7 +75,10 @@ public class WeChatMessageRouteRule {
             (inMessage.getEvent()==null?null:inMessage.getEvent().toLowerCase())))
             && (this.eventKey == null
             || this.eventKey.toLowerCase().equals(
-            (inMessage.getEventKey()==null?null:inMessage.getEventKey().toLowerCase())));
+            (inMessage.getEventKey()==null?null:inMessage.getEventKey().toLowerCase())))
+            && (this.content == null
+            || this.content.toLowerCase().equals(
+            (inMessage.getContent()==null?null:inMessage.getContent().toLowerCase())));
     }
 
     public WeChatMessageHandler getHandler() {

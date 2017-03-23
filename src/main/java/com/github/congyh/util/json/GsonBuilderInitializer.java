@@ -13,6 +13,7 @@ import java.lang.reflect.Type;
  *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
+@Deprecated
 public class GsonBuilderInitializer {
     public static final GsonBuilder builder = new GsonBuilder();
 

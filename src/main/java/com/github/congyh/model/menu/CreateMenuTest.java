@@ -1,6 +1,6 @@
 package com.github.congyh.model.menu;
 
-import com.github.congyh.util.json.GsonBuilderInitializer;
+import com.google.gson.Gson;
 
 import static java.lang.System.out;
 
@@ -39,7 +39,7 @@ public class CreateMenuTest {
         Menu menu = new Menu();
         menu.setButtons(new Button[] {cbtn1, vbtn1, bws});
 
-        String jsonMenu = GsonBuilderInitializer.builder.create().toJson(menu);
+        String jsonMenu = new Gson().toJson(menu);
         out.println(jsonMenu);
     }
 }

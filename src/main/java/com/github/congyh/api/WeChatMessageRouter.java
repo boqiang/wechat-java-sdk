@@ -1,5 +1,6 @@
 package com.github.congyh.api;
 
+import com.github.congyh.api.impl.DemoOAuth2Handler;
 import com.github.congyh.api.impl.WeChatMessageDuplicateDetectServiceImpl;
 import com.github.congyh.exception.WeChatException;
 import com.github.congyh.model.WeChatXmlInMessage;
@@ -26,6 +27,10 @@ public class WeChatMessageRouter {
     static {
         INSTANCE.addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
             .useHandler(new SimpleTextHandler())
+            .endRule();
+        INSTANCE.addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
+            .withContent("OAuth测试")
+            .useHandler(new DemoOAuth2Handler())
             .endRule();
     }
     // 规则列表
