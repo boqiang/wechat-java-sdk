@@ -32,9 +32,9 @@ public class WeChatOAuth2ServiceImpl implements WeChatOAuth2Service {
         StringBuilder sb = new StringBuilder();
         sb.append("https://api.weixin.qq.com/sns/oauth2/access_token?")
             .append("appid=").append(WeChatConst.APPID)
-            .append("secret=").append(WeChatConst.SECRET)
-            .append("code=").append(code)
-            .append("grant_type=authorization_code");
+            .append("&secret=").append(WeChatConst.SECRET)
+            .append("&code=").append(code)
+            .append("&grant_type=authorization_code");
         String res = null;
         try {
             res = HttpsUtils.get(sb.toString());
