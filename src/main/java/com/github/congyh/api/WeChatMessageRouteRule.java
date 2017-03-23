@@ -15,7 +15,6 @@ public class WeChatMessageRouteRule {
     private String eventKey;
     private boolean async = true; // 默认启用异步处理
     private String content;
-    private WeChatMessageRouter router = WeChatMessageRouter.getRouter();
     private WeChatMessageHandler handler;
 
     public  WeChatMessageRouteRule withMsgType(final String msgType) {
@@ -54,9 +53,9 @@ public class WeChatMessageRouteRule {
      *
      * @return {@link WeChatMessageRouter WeChatMessageRouter} 单例对象
      */
-    public WeChatMessageRouter endRule() {
-        this.router.getRules().add(this);
-        return this.router;
+    public Class<WeChatMessageRouter> endRule() {
+        WeChatMessageRouter.getRules().add(this);
+        return WeChatMessageRouter.class;
     }
 
     /**

@@ -24,8 +24,6 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/CoreServlet")
 public class CoreServlet extends HttpServlet {
 
-    // 服务器消息路由器
-    private final WeChatMessageRouter router = WeChatMessageRouter.getRouter();
     private final WeChatService weChatService = new WeChatServiceImpl();
 
     @Override
@@ -86,7 +84,7 @@ public class CoreServlet extends HttpServlet {
 //        resp.getWriter().print(XmlUtils.pojo2Xml(outMessage));
 
         // 路由到合适的handler
-        WeChatMessageHandler handler = this.router.route(inMessage);
+        WeChatMessageHandler handler = WeChatMessageRouter.route(inMessage);
         if (handler == null) {
             return;
         }

@@ -18,7 +18,6 @@ import java.util.Arrays;
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
 public class WeChatServiceImpl implements WeChatService {
-//    private final ExecutorService executorService = Executors.newCachedThreadPool();
     @Override
     public WeChatXmlOutMessage handleMessage(WeChatXmlInMessage inMessage,
                                       WeChatMessageHandler handler) {

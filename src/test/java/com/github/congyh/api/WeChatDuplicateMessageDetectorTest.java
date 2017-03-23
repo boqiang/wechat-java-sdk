@@ -1,23 +1,22 @@
-package com.github.congyh.api.impl;
+package com.github.congyh.api;
 
-import com.github.congyh.api.WeChatMessageDuplicateDetectService;
 import com.github.congyh.model.WeChatXmlInMessage;
 import org.junit.Test;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
-public class WeChatMessageDuplicateDetectServiceImplTest {
+public class WeChatDuplicateMessageDetectorTest {
 
     @Test
     public void testDetectDuplicate() throws InterruptedException {
-        WeChatMessageDuplicateDetectService messageDuplicateDetectService
-             = WeChatMessageDuplicateDetectServiceImpl.getService();
+
         WeChatXmlInMessage inMessage0 = new WeChatXmlInMessage();
         WeChatXmlInMessage inMessage1 = new WeChatXmlInMessage();
         WeChatXmlInMessage inMessage2 = new WeChatXmlInMessage();
@@ -39,19 +38,19 @@ public class WeChatMessageDuplicateDetectServiceImplTest {
         list.add(inMessage5);
 
         for (WeChatXmlInMessage inMessage: list) {
-            assertFalse(messageDuplicateDetectService.detectDuplicate(inMessage));
+            assertFalse(WeChatDuplicateMessageDetector.detectDuplicate(inMessage));
         }
 
         // 1秒后检测, 应该判定为重复消息
         Thread.sleep(1000L);
         for (WeChatXmlInMessage inMessage: list) {
-            assertTrue(messageDuplicateDetectService.detectDuplicate(inMessage));
+            assertTrue(WeChatDuplicateMessageDetector.detectDuplicate(inMessage));
         }
 
         //再过1秒后检测, 此时应该作为新消息
         Thread.sleep(1000L);
         for (WeChatXmlInMessage inMessage: list) {
-            assertFalse(messageDuplicateDetectService.detectDuplicate(inMessage));
+            assertFalse(WeChatDuplicateMessageDetector.detectDuplicate(inMessage));
         }
     }
 }

@@ -1,10 +1,8 @@
 package com.github.congyh.api;
 
 import com.github.congyh.api.impl.DemoOAuth2Handler;
-import com.github.congyh.api.impl.WeChatMessageDuplicateDetectServiceImpl;
-import com.github.congyh.exception.WeChatException;
-import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.api.impl.SimpleTextHandler;
+import com.github.congyh.model.WeChatXmlInMessage;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -20,34 +18,28 @@ import java.util.List;
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
 public class WeChatMessageRouter {
-    private static final WeChatMessageRouter INSTANCE = new WeChatMessageRouter();
-    private final WeChatMessageDuplicateDetectService messageDuplicateDetectService
-         = WeChatMessageDuplicateDetectServiceImpl.getService();
+    // 规则列表
+    private static final List<WeChatMessageRouteRule> rules = new LinkedList<>();
 
     static {
         // 规则越细的越要放在前面
-        INSTANCE.addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
+        addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
             .withContent("OAuth测试")
             .useHandler(new DemoOAuth2Handler())
             .endRule();
-        INSTANCE.addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
+        addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
             .useHandler(new SimpleTextHandler())
             .endRule();
     }
-    // 规则列表
-    private final List<WeChatMessageRouteRule> rules = new LinkedList<>();
 
     private WeChatMessageRouter() {}
 
-    public static WeChatMessageRouter getRouter() {
-        return INSTANCE;
-    }
     /**
      * 构造一个新的路由规则
      *
-     * @return
+     * @return 消息路由规则
      */
-    public WeChatMessageRouteRule addRule() {
+    public static WeChatMessageRouteRule addRule() {
         return new WeChatMessageRouteRule();
     }
 
@@ -57,13 +49,13 @@ public class WeChatMessageRouter {
      * @param inMessage 服务器消息
      * @return 消息handler
      */
-    public WeChatMessageHandler route(final WeChatXmlInMessage inMessage) {
+    public static WeChatMessageHandler route(final WeChatXmlInMessage inMessage) {
         // 如果是重复消息, 不进行处理
-        if (messageDuplicateDetectService.detectDuplicate(inMessage)) {
+        if (WeChatDuplicateMessageDetector.detectDuplicate(inMessage)) {
             return null;
         }
 
-        for (final WeChatMessageRouteRule rule: this.rules) {
+        for (final WeChatMessageRouteRule rule: rules) {
             if (rule.match(inMessage)) {
                 return rule.getHandler();
             }
@@ -72,7 +64,7 @@ public class WeChatMessageRouter {
         return null;
     }
 
-    public List<WeChatMessageRouteRule> getRules() {
+    public static List<WeChatMessageRouteRule> getRules() {
         return rules;
     }
 }
