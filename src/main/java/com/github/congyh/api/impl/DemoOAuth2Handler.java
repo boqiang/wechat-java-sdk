@@ -20,7 +20,7 @@ public class DemoOAuth2Handler extends WeChatMessageHandler {
     public WeChatXmlOutMessage handle(WeChatXmlInMessage inMessage) {
         // 构造要发送给用户的URL
         String url = weChatOAuth2Service.buildOAuthAuthenticationURL(
-            WeChatConst.OAUTU2_REDIRECT_URI + "/OAuth2Servlet");
+            WeChatConst.OAUTH2_REDIRECT_URI + "/OAuth2Servlet");
         return WeChatMessageBuilderFactory.buildText()
             .fromUser(inMessage.getToUserName())
             .toUser(inMessage.getFromUserName())

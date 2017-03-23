@@ -1,12 +1,10 @@
 package com.github.congyh.api.impl;
 
 import com.github.congyh.api.WeChatConst;
-import com.github.congyh.api.WeChatOAuth2Service;
 import org.junit.Before;
 import org.junit.Test;
 
 import static java.lang.System.out;
-import static org.junit.Assert.*;
 
 /**
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
@@ -22,7 +20,7 @@ public class WeChatOAuth2ServiceImplTest {
     @Test
     public void buildOAuthAuthenticationURL() throws Exception {
         String url = weChatOAuth2Service.buildOAuthAuthenticationURL(
-            WeChatConst.OAUTU2_REDIRECT_URI + "/OAuth2Servlet");
+            WeChatConst.OAUTH2_REDIRECT_URI + "/OAuth2Servlet");
         out.println(url);
     }
 

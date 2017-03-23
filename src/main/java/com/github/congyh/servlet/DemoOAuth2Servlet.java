@@ -1,5 +1,6 @@
 package com.github.congyh.servlet;
 
+import com.github.congyh.api.WeChatConst;
 import com.github.congyh.api.WeChatOAuth2Service;
 import com.github.congyh.api.impl.WeChatOAuth2ServiceImpl;
 import com.github.congyh.model.WeChatOAuth2AccessToken;
@@ -17,7 +18,7 @@ import java.io.PrintWriter;
  * OAuth2.0样例
  *
  * <pre>
- * {@link com.github.congyh.api.WeChatConst#OAUTU2_REDIRECT_URI OAUTU2_REDIRECT_URI}
+ * {@link WeChatConst#OAUTH2_REDIRECT_URI OAUTH2_REDIRECT_URI}
  *
  * </pre>
  *
