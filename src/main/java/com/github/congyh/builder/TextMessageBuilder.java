@@ -1,5 +1,6 @@
 package com.github.congyh.builder;
 
+import com.github.congyh.api.WeChatConst;
 import com.github.congyh.model.WeChatXmlOutMessage;
 
 /**
@@ -21,6 +22,7 @@ public class TextMessageBuilder extends AbstractMessageBuilder<TextMessageBuilde
         // 设置通用部分
         preBuild(outMessage);
         outMessage.setContent(this.content);
+        outMessage.setMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT);
         return outMessage;
     }
 }
