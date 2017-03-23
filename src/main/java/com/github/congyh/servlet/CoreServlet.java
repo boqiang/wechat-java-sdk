@@ -87,6 +87,9 @@ public class CoreServlet extends HttpServlet {
 
         // 路由到合适的handler
         WeChatMessageHandler handler = this.router.route(inMessage);
+        if (handler == null) {
+            return;
+        }
         WeChatXmlOutMessage outMessage = this.weChatService
             .handleMessage(inMessage, handler);
         resp.getWriter().print(XmlUtils.pojo2Xml(outMessage));

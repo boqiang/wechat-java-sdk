@@ -1,5 +1,6 @@
 package com.github.congyh.api;
 
+import com.github.congyh.api.impl.WeChatMessageDuplicateDetectServiceImpl;
 import com.github.congyh.exception.WeChatException;
 import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.api.impl.SimpleTextHandler;
@@ -19,6 +20,8 @@ import java.util.List;
  */
 public class WeChatMessageRouter {
     private static final WeChatMessageRouter INSTANCE = new WeChatMessageRouter();
+    private final WeChatMessageDuplicateDetectService messageDuplicateDetectService
+         = WeChatMessageDuplicateDetectServiceImpl.getService();
 
     static {
         INSTANCE.addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
@@ -49,12 +52,18 @@ public class WeChatMessageRouter {
      * @return 消息handler
      */
     public WeChatMessageHandler route(final WeChatXmlInMessage inMessage) {
+        // 如果是重复消息, 不进行处理
+        if (messageDuplicateDetectService.detectDuplicate(inMessage)) {
+            return null;
+        }
+
         for (final WeChatMessageRouteRule rule: this.rules) {
             if (rule.match(inMessage)) {
                 return rule.getHandler();
             }
         }
-        throw new WeChatException("没有匹配的服务器消息处理器!");
+
+        return null;
     }
 
     public List<WeChatMessageRouteRule> getRules() {
