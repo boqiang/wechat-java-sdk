@@ -25,12 +25,13 @@ public class WeChatMessageRouter {
          = WeChatMessageDuplicateDetectServiceImpl.getService();
 
     static {
-        INSTANCE.addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
-            .useHandler(new SimpleTextHandler())
-            .endRule();
+        // 规则越细的越要放在前面
         INSTANCE.addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
             .withContent("OAuth测试")
             .useHandler(new DemoOAuth2Handler())
+            .endRule();
+        INSTANCE.addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
+            .useHandler(new SimpleTextHandler())
             .endRule();
     }
     // 规则列表
