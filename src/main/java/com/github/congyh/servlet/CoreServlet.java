@@ -1,13 +1,15 @@
 package com.github.congyh.servlet;
 
-import com.github.congyh.api.WeChatMessageRouter;
-import com.github.congyh.model.WeChatXmlInMessage;
-import com.github.congyh.model.WeChatXmlOutMessage;
 import com.github.congyh.api.WeChatMessageHandler;
+import com.github.congyh.api.WeChatMessageRouter;
 import com.github.congyh.api.WeChatService;
 import com.github.congyh.api.impl.WeChatServiceImpl;
+import com.github.congyh.model.WeChatXmlInMessage;
+import com.github.congyh.model.WeChatXmlOutMessage;
 import com.github.congyh.util.XmlUtils;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,6 +26,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/CoreServlet")
 public class CoreServlet extends HttpServlet {
 
+    private static final Logger logger = LoggerFactory.getLogger(CoreServlet.class);
     private final WeChatService weChatService = new WeChatServiceImpl();
 
     @Override
@@ -35,10 +38,10 @@ public class CoreServlet extends HttpServlet {
 
         // TODO 这里应该判定如果同一个session检测一次即可
         // 如果校验不成功, 说明是非微信服务器消息, 返回警告信息
-        if (!this.weChatService.checkSignature(req)) {
-            resp.getWriter().print("警告: 请立即停止非法行为!");
-            return;
-        }
+//        if (!this.weChatService.checkSignature(req)) {
+//            resp.getWriter().print("警告: 请立即停止非法行为!");
+//            return;
+//        }
 
         String echoStr = req.getParameter("echostr");
         // 如果请求中这个字段有值, 那么就是一个简单的"GET"类型的验证请求,
@@ -90,7 +93,9 @@ public class CoreServlet extends HttpServlet {
         }
         WeChatXmlOutMessage outMessage = this.weChatService
             .handleMessage(inMessage, handler);
-        resp.getWriter().print(XmlUtils.pojo2Xml(outMessage));
+        String outMessageStr = XmlUtils.pojo2Xml(outMessage);
+        logger.debug(outMessageStr);
+        resp.getWriter().print(outMessageStr);
     }
 
 
