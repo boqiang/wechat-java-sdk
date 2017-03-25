@@ -1,4 +1,4 @@
-package com.github.congyh.servlet;
+package com.github.congyh.demo;
 
 import com.github.congyh.api.WeChatConst;
 import com.github.congyh.api.WeChatOAuth2Service;
@@ -26,6 +26,7 @@ import java.io.PrintWriter;
  */
 @WebServlet("/OAuth2Servlet")
 public class DemoOAuth2Servlet extends HttpServlet {
+    private static final long serialVersionUID = 3124102511071830951L;
     // TODO 这里还没有处理好WeChatOAuth2Service的单例, 注入问题, 因为除了这里还有其他地方要用到
     // 这个Service, 而且Servlet最好是无状态的, 这里没有协调好
     private final WeChatOAuth2Service weChatOAuth2Service = new WeChatOAuth2ServiceImpl();

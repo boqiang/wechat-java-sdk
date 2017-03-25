@@ -1,4 +1,4 @@
-package com.github.congyh.servlet;
+package com.github.congyh.demo;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

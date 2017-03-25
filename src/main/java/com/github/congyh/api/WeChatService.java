@@ -13,13 +13,6 @@ import java.io.IOException;
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
 public interface WeChatService {
-    /**
-     * 处理服务器消息
-     *
-     * @return 回复消息
-     */
-    public WeChatXmlOutMessage handleMessage(WeChatXmlInMessage inMessage,
-                                      WeChatMessageHandler handler);
 
     /**
      * 校验请求

@@ -18,30 +18,6 @@ import java.util.Arrays;
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
 public class WeChatServiceImpl implements WeChatService {
-    @Override
-    public WeChatXmlOutMessage handleMessage(WeChatXmlInMessage inMessage,
-                                      WeChatMessageHandler handler) {
-        // 由于Servlet处理消息本来就是多线程的, 所以这里就不进行多线程处理了
-//        if (handler.getRule().isAsync()) {
-//            Future<WeChatXmlOutMessage> res = executorService.submit(new Callable<WeChatXmlOutMessage>() {
-//                @Override
-//                public WeChatXmlOutMessage call() throws Exception {
-//                    return handler.handle(inMessage);
-//                }
-//            });
-//            try {
-//                return res.get();
-//            } catch (InterruptedException | ExecutionException e) {
-//                e.printStackTrace();
-//                return null;
-//            }
-//        } else {
-//            return handler.handle(inMessage);
-//        }
-
-        return handler.handle(inMessage);
-    }
-
 
     /**
      * 校验请求(为了确认请求来自微信服务器)

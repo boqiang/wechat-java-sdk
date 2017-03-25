@@ -1,8 +1,10 @@
 package com.github.congyh.api;
 
 import com.github.congyh.api.impl.DemoOAuth2Handler;
+import com.github.congyh.api.impl.NotSupportedMessageTypeHandler;
 import com.github.congyh.api.impl.SimpleTextHandler;
 import com.github.congyh.model.WeChatXmlInMessage;
+import com.github.congyh.model.WeChatXmlOutMessage;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -47,9 +49,9 @@ public final class WeChatMessageRouter {
      * 将服务器消息路由到合适的handler进行处理
      *
      * @param inMessage 服务器消息
-     * @return 消息handler
+     * @return 回复消息
      */
-    public static WeChatMessageHandler route(final WeChatXmlInMessage inMessage) {
+    public static WeChatXmlOutMessage route(final WeChatXmlInMessage inMessage) {
         // 如果是重复消息, 不进行处理
         if (WeChatDuplicateMessageDetector.detectDuplicate(inMessage)) {
             return null;
@@ -57,11 +59,11 @@ public final class WeChatMessageRouter {
 
         for (final WeChatMessageRouteRule rule: rules) {
             if (rule.match(inMessage)) {
-                return rule.getHandler();
+                return rule.getHandler().handle(inMessage);
             }
         }
 
-        return null;
+        return new NotSupportedMessageTypeHandler().handle(inMessage);
     }
 
     public static List<WeChatMessageRouteRule> getRules() {
