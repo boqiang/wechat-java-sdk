@@ -2,58 +2,24 @@ package com.github.congyh.api;
 
 import com.github.congyh.model.WeChatXmlInMessage;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
 /**
- * 检测服务器消息是否重复
+ * 服务器消息排重器
+ *
+ * <pre>
+ * 对于微信服务器转发来的消息, 如果web应用不能在5s内给予响应,
+ * 服务器会重复发送, 一共三次. 如果之前的消息并不是由于丢包导致未响应,
+ * 则很有可能造成同一消息重复处理, 所以需要对服务器消息进行排重.
+ * </pre>
  *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
-public final class WeChatDuplicateMessageDetector {
-    // 定时线程池, 用来支持线程工作
-    private static final ScheduledExecutorService executor
-        = Executors.newScheduledThreadPool(1);
-    // 存储当前未过期的消息信息, key为MsgId, value为加入时间
-    public static final ConcurrentHashMap<String, Long> messageMap
-        = new ConcurrentHashMap<>();
-    // 不为重复消息的最长时间, 默认为3 * 5s, 由于微信在服务器没有相应的时候每隔5s会重发一次, 一共三次.
-    private static long validTime;
-    // 清理重复消息的周期, 比validTime小即可, 默认与微信重发时间间隔相同
-    private static long clearInterval;
-
-    static {
-        validTime = 1500L;
-        clearInterval = 500L;
-
-        executor.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                long now = System.currentTimeMillis();
-                for (Map.Entry<String, Long> entry: messageMap.entrySet()) {
-                    if (now - entry.getValue() >= validTime) { // 消息超时移除
-                        messageMap.entrySet().remove(entry);
-                    }
-                }
-            }
-        }, 0, clearInterval, TimeUnit.MILLISECONDS);
-    }
-
-    private WeChatDuplicateMessageDetector() {}
+public interface WeChatDuplicateMessageDetector {
 
     /**
-     * 检测服务器消息是否重复
+     * 检验服务器消息是否重复
      *
      * @param inMessage 服务器消息
-     * @return true 重复 or false 不重复
+     * @return true 如果判定为重复消息 or false 如果是新消息
      */
-    public static boolean detectDuplicate(WeChatXmlInMessage inMessage) {
-        String msgId = inMessage.getMsgId().toString();
-        // 只要putIfAbsent返回了空, 说明map中之前存在映射, 也就是说消息是重复的.
-        Long lastMessageTime = messageMap.putIfAbsent(msgId, System.currentTimeMillis());
-        return lastMessageTime != null;
-    }
+    public boolean isMessageDuplicate(WeChatXmlInMessage inMessage);
 }
