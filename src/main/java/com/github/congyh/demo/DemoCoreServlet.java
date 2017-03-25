@@ -1,11 +1,11 @@
 package com.github.congyh.demo;
 
-import com.github.congyh.api.WeChatMessageHandler;
 import com.github.congyh.api.WeChatMessageRouter;
 import com.github.congyh.api.WeChatService;
 import com.github.congyh.api.impl.WeChatServiceImpl;
 import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.model.WeChatXmlOutMessage;
+import com.github.congyh.util.HttpUtils;
 import com.github.congyh.util.XmlUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -62,7 +62,7 @@ public class DemoCoreServlet extends HttpServlet {
 
         // 路由并处理消息
         WeChatXmlOutMessage outMessage = WeChatMessageRouter.route(inMessage);
-
+        logger.debug(HttpUtils.getRequestHeaderAsString(req));
         logger.debug(outMessage.getContent());
         resp.getWriter().print(XmlUtils.pojo2Xml(outMessage));
     }

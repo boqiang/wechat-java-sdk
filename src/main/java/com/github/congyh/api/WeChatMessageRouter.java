@@ -5,6 +5,8 @@ import com.github.congyh.api.impl.NotSupportedMessageTypeHandler;
 import com.github.congyh.api.impl.SimpleTextHandler;
 import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.model.WeChatXmlOutMessage;
+import com.github.congyh.session.BaseSessionManager;
+import com.github.congyh.session.WeChatSessionManager;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +24,7 @@ import java.util.List;
 public final class WeChatMessageRouter {
     // 规则列表
     private static final List<WeChatMessageRouteRule> rules = new LinkedList<>();
+    private static WeChatSessionManager sessionManager = new BaseSessionManager();
 
     static {
         // 规则越细的越要放在前面
@@ -68,5 +71,9 @@ public final class WeChatMessageRouter {
 
     public static List<WeChatMessageRouteRule> getRules() {
         return rules;
+    }
+
+    public static void setSessionManager(WeChatSessionManager sessionManager) {
+        WeChatMessageRouter.sessionManager = sessionManager;
     }
 }
