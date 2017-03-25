@@ -7,5 +7,6 @@
     - token=这里是你在微信开发者接入界面填写的token
     - appid=可以在开发者界面上看到
     - secret=可以在开发者界面上看到
+    - oauth2_redirect_uri=oauth2授权成功后的跳转页面(可选配置)
 2. mvn package, 并部署
 3. 访问http://localhost:8080/CoreServlet即可.
