@@ -1,4 +1,6 @@
-package com.github.congyh.session;
+package com.github.congyh.api;
+
+import com.github.congyh.model.session.WeChatSession;
 
 /**
  * 定义session管理的基本方法

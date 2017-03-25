@@ -3,7 +3,7 @@ package com.github.congyh.api.impl;
 import com.github.congyh.api.WeChatConst;
 import com.github.congyh.api.WeChatMessageHandler;
 import com.github.congyh.api.WeChatOAuth2Service;
-import com.github.congyh.model.WeChatMessageBuilderFactory;
+import com.github.congyh.builder.WeChatMessageBuilderFactory;
 import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.model.WeChatXmlOutMessage;
 

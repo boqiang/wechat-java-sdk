@@ -26,7 +26,6 @@ public final class WeChatDuplicateMessageDetector {
     private static long clearInterval;
 
     static {
-        // TODO 目前还不支持自定制, 需要添加set方法, 能够在取得实例之后进行使用.
         validTime = 1500L;
         clearInterval = 500L;
 

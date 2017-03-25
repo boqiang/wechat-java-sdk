@@ -7,8 +7,8 @@ import com.github.congyh.api.impl.NotSupportedMessageTypeHandler;
 import com.github.congyh.api.impl.SimpleTextHandler;
 import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.model.WeChatXmlOutMessage;
-import com.github.congyh.session.BaseSessionManager;
-import com.github.congyh.session.WeChatSessionManager;
+import com.github.congyh.api.impl.BasicSessionManager;
+import com.github.congyh.api.WeChatSessionManager;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.List;
 public final class WeChatMessageRouter {
     // 规则列表
     private static final List<WeChatMessageRouteRule> rules = new LinkedList<>();
-    private static WeChatSessionManager sessionManager = new BaseSessionManager();
+    private static WeChatSessionManager sessionManager = new BasicSessionManager();
     // TODO 将DuplicateMessageDetector也变为一个可插拔组件
 
     static {

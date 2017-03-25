@@ -1,4 +1,4 @@
-package com.github.congyh.model;
+package com.github.congyh.builder;
 
 import com.github.congyh.builder.TextMessageBuilder;
 

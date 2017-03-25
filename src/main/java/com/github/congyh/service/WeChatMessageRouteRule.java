@@ -1,16 +1,16 @@
 package com.github.congyh.service;
 
-/**
- * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
- */
+
 
 import com.github.congyh.api.WeChatMessageHandler;
 import com.github.congyh.model.WeChatXmlInMessage;
 
 /**
- * 具体的路由规则
+ * 自定义路由规则
+ *
+ * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
-public class WeChatMessageRouteRule {
+public final class WeChatMessageRouteRule {
     private String msgType;
     private String event;
     private String eventKey;

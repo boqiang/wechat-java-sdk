@@ -13,4 +13,4 @@
  *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
-package com.github.congyh.session;
+package com.github.congyh.model.session;
