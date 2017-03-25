@@ -17,7 +17,8 @@ import java.io.Serializable;
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
 @XStreamAlias("xml")
-public class WeChatXmlInMessage extends AbstractMessage implements Serializable {
+public class WeChatXmlInMessage extends AbstractMessage {
+    private static final long serialVersionUID = -7958581622535239114L;
     // 消息id, 64位整型
     @XStreamAlias("MsgId")
     private Long msgId;

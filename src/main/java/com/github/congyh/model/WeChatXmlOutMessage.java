@@ -17,7 +17,8 @@ import java.io.Serializable;
  * @see WeChatXmlInMessage
  */
 @XStreamAlias("xml")
-public class WeChatXmlOutMessage extends AbstractMessage implements Serializable {
+public class WeChatXmlOutMessage extends AbstractMessage {
+    private static final long serialVersionUID = -7172541625630267855L;
     // 消息id, 64位整型
     @XStreamAlias("MsgId")
     private Long msgId;
