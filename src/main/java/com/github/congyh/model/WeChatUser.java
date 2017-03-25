@@ -2,6 +2,7 @@ package com.github.congyh.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +10,8 @@ import java.util.List;
  *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
-public class WeChatUser {
+public class WeChatUser implements Serializable {
+    private static final long serialVersionUID = 5326940150278338440L;
     @SerializedName("openid")
     private String openId;
     private String nickname;

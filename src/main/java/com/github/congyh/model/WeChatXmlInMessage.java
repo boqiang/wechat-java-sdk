@@ -2,6 +2,8 @@ package com.github.congyh.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+import java.io.Serializable;
+
 /**
  * 微信公众平台消息
  *
@@ -15,7 +17,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
 @XStreamAlias("xml")
-public class WeChatXmlInMessage extends AbstractMessage {
+public class WeChatXmlInMessage extends AbstractMessage implements Serializable {
     // 消息id, 64位整型
     @XStreamAlias("MsgId")
     private Long msgId;

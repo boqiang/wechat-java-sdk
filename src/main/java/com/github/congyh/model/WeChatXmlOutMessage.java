@@ -3,6 +3,8 @@ package com.github.congyh.model;
 import com.github.congyh.api.WeChatConst;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+import java.io.Serializable;
+
 /**
  * 微信公众平台回复消息
  *
@@ -15,7 +17,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @see WeChatXmlInMessage
  */
 @XStreamAlias("xml")
-public class WeChatXmlOutMessage extends AbstractMessage {
+public class WeChatXmlOutMessage extends AbstractMessage implements Serializable {
     // 消息id, 64位整型
     @XStreamAlias("MsgId")
     private Long msgId;

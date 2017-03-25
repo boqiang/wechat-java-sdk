@@ -21,7 +21,6 @@ public class GsonBuilderInitializer {
         // 这里注册各种类型适配器.
         builder.registerTypeAdapter(WeChatAccessToken.class,
             new WeChatAccessTokenDeserializer());
-        // TODO 实际上无需自己进行注册, 直接用注解在需要在反序列化时标注别名的字段上面设置别名即可.
     }
 
     /**
@@ -49,7 +48,7 @@ public class GsonBuilderInitializer {
             return weChatAccessToken;
         }
 
-        // TODO 通过jsonMembers设置实际的field值
+
         // 先通过样本代码来使用吧
         private void fromJsonSetFields(JsonElement jsonElement, Class<?> cls, String... jsonMembers)
             throws IllegalAccessException, InstantiationException {
@@ -58,7 +57,6 @@ public class GsonBuilderInitializer {
             Object obj = cls.newInstance();
             for (String jsonMember : jsonMembers) {
                 if (jsonObject.get(jsonMember) != null && !jsonObject.get(jsonMember).isJsonNull()) {
-                    // TODO 这里还没有想好怎么根据jsonMember的实际类型来选择不同的函数调用
 //                    Method SetMethod = cls.getMethod(
 //                        "set" + CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_CAMEL, jsonMember), );
                 }

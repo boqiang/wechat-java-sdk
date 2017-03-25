@@ -1,5 +1,7 @@
 package com.github.congyh.model;
 
+import java.io.Serializable;
+
 /**
  * 微信公众平台的API所需的access_token实体
  *
@@ -8,7 +10,8 @@ package com.github.congyh.model;
  *
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
-public class WeChatAccessToken {
+public class WeChatAccessToken implements Serializable {
+    private static final long serialVersionUID = 1594764230231230405L;
     private String accessToken;
     private int expiresIn;
 
