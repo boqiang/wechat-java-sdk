@@ -37,9 +37,8 @@ public final class WeChatMessageRouter {
          = new BasicDuplicateMessageDetector();
 
     static {
-        // debug, 内置规则
+        // debug, 内置规则, 规则越细的越要放在前面
         // TODO 后期将规则设置整合到WeChatService中去.
-        // 规则越细的越要放在前面
         addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
             .withContent("OAuth测试")
             .useHandler(new DemoOAuth2Handler())
@@ -90,6 +89,11 @@ public final class WeChatMessageRouter {
     }
 
     public static void setDuplicateMessageDetector(WeChatDuplicateMessageDetector duplicateMessageDetector) {
+        // 如果原消息判重器是内置的BasicDuplicateMessageDetector类型, 需要手动停止线程运作
+        if (WeChatMessageRouter.duplicateMessageDetector instanceof BasicDuplicateMessageDetector) {
+            ((BasicDuplicateMessageDetector) WeChatMessageRouter.duplicateMessageDetector)
+                .endScheduledDetect();
+        }
         WeChatMessageRouter.duplicateMessageDetector = duplicateMessageDetector;
     }
 }

@@ -1,7 +1,5 @@
 package com.github.congyh.builder;
 
-import com.github.congyh.builder.TextMessageBuilder;
-
 /**
  * 工厂
  *
