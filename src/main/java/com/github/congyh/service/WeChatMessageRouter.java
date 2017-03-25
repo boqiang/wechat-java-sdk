@@ -1,5 +1,7 @@
-package com.github.congyh.api;
+package com.github.congyh.service;
 
+import com.github.congyh.api.WeChatConst;
+import com.github.congyh.api.WeChatDuplicateMessageDetector;
 import com.github.congyh.api.impl.DemoOAuth2Handler;
 import com.github.congyh.api.impl.NotSupportedMessageTypeHandler;
 import com.github.congyh.api.impl.SimpleTextHandler;
@@ -25,6 +27,7 @@ public final class WeChatMessageRouter {
     // 规则列表
     private static final List<WeChatMessageRouteRule> rules = new LinkedList<>();
     private static WeChatSessionManager sessionManager = new BaseSessionManager();
+    // TODO 将DuplicateMessageDetector也变为一个可插拔组件
 
     static {
         // 规则越细的越要放在前面

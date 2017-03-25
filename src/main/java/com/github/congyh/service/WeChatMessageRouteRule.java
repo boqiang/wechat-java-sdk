@@ -1,9 +1,10 @@
-package com.github.congyh.api;
+package com.github.congyh.service;
 
 /**
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
 
+import com.github.congyh.api.WeChatMessageHandler;
 import com.github.congyh.model.WeChatXmlInMessage;
 
 /**

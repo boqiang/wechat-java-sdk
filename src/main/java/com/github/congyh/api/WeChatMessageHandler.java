@@ -2,6 +2,7 @@ package com.github.congyh.api;
 
 import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.model.WeChatXmlOutMessage;
+import com.github.congyh.service.WeChatMessageRouteRule;
 
 /**
  * 服务器消息消息处理器

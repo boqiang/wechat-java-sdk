@@ -1,6 +1,6 @@
 package com.github.congyh.demo;
 
-import com.github.congyh.api.WeChatMessageRouter;
+import com.github.congyh.service.WeChatMessageRouter;
 import com.github.congyh.api.WeChatService;
 import com.github.congyh.api.impl.WeChatServiceImpl;
 import com.github.congyh.model.WeChatXmlInMessage;
