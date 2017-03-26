@@ -18,9 +18,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class BasicWeChatSession implements WeChatSession, Serializable {
     private static final long serialVersionUID = -3027813728840717369L;
     private final WeChatSessionManager sessionManager;
-    // TODO 需要一个session id
-    // TODO WeChatSession需要有一个能够操作Id的方法
     private String sessionId;
+    private long createTime;
     private Map<String, Object> attributesMap = new ConcurrentHashMap<>();
 
     /**
@@ -33,6 +32,7 @@ public class BasicWeChatSession implements WeChatSession, Serializable {
     public BasicWeChatSession(String sessionId, WeChatSessionManager sessionManager) {
         this.sessionId = sessionId;
         this.sessionManager = sessionManager;
+        this.createTime = System.currentTimeMillis();
     }
 
     @Override
@@ -40,6 +40,7 @@ public class BasicWeChatSession implements WeChatSession, Serializable {
         if (name == null) {
             return null;
         }
+        // 单步get, 无需手动控制同步
         return attributesMap.get(name);
     }
 
@@ -55,7 +56,9 @@ public class BasicWeChatSession implements WeChatSession, Serializable {
         }
         if (value == null) {
             removeAttribute(name);
+            return;
         }
+        // 只能保证最终一致性
         attributesMap.put(name, value);
     }
 
@@ -79,5 +82,9 @@ public class BasicWeChatSession implements WeChatSession, Serializable {
 
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
+    }
+
+    public long getCreateTime() {
+        return createTime;
     }
 }

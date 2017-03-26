@@ -72,6 +72,8 @@ public final class WeChatMessageRouter {
         if (duplicateMessageDetector.isMessageDuplicate(inMessage)) {
             return null;
         }
+        // 进行session关联
+        sessionManager.getSession(inMessage.getFromUserName(), true);
 
         for (final WeChatMessageRouteRule rule: rules) {
             if (rule.match(inMessage)) {
