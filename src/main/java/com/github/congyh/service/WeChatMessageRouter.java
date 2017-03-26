@@ -2,13 +2,9 @@ package com.github.congyh.service;
 
 import com.github.congyh.api.WeChatConst;
 import com.github.congyh.api.WeChatDuplicateMessageDetector;
-import com.github.congyh.api.impl.BasicDuplicateMessageDetector;
-import com.github.congyh.api.impl.DemoOAuth2Handler;
-import com.github.congyh.api.impl.NotSupportedMessageTypeHandler;
-import com.github.congyh.api.impl.SimpleTextHandler;
+import com.github.congyh.api.impl.*;
 import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.model.WeChatXmlOutMessage;
-import com.github.congyh.api.impl.BasicSessionManager;
 import com.github.congyh.api.WeChatSessionManager;
 
 import java.util.LinkedList;
@@ -46,7 +42,8 @@ public final class WeChatMessageRouter {
             .useHandler(new DemoOAuth2Handler())
             .endRule();
         addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
-            .useHandler(new SimpleTextHandler())
+//            .useHandler(new SimpleTextHandler())
+            .useHandler(new DemoSessionHandler())
             .endRule();
     }
 

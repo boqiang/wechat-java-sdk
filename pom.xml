@@ -7,7 +7,7 @@
     <groupId>com.github.congyh</groupId>
     <artifactId>wechat-public-platform</artifactId>
     <packaging>war</packaging>
-    <version>0.1</version>
+    <version>0.2</version>
 
     <name>WeChat Public Platform</name>
     <description>Personal Wechat public platform.</description>
