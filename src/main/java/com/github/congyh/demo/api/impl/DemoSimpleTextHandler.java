@@ -1,4 +1,4 @@
-package com.github.congyh.api.impl;
+package com.github.congyh.demo.api.impl;
 
 import com.github.congyh.api.WeChatSessionManager;
 import com.github.congyh.builder.WeChatMessageBuilderFactory;
@@ -9,7 +9,7 @@ import com.github.congyh.api.WeChatMessageHandler;
 /**
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
-public class SimpleTextHandler extends WeChatMessageHandler {
+public class DemoSimpleTextHandler extends WeChatMessageHandler {
     @Override
     public WeChatXmlOutMessage handle(WeChatXmlInMessage inMessage,
                                       WeChatSessionManager sessionManager) {

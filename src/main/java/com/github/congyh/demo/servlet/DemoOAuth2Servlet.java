@@ -1,4 +1,4 @@
-package com.github.congyh.demo;
+package com.github.congyh.demo.servlet;
 
 import com.github.congyh.api.WeChatConst;
 import com.github.congyh.api.WeChatOAuth2Service;

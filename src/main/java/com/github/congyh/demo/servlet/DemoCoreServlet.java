@@ -1,5 +1,8 @@
-package com.github.congyh.demo;
+package com.github.congyh.demo.servlet;
 
+import com.github.congyh.api.WeChatConst;
+import com.github.congyh.demo.api.impl.DemoOAuth2Handler;
+import com.github.congyh.demo.api.impl.DemoSessionHandler;
 import com.github.congyh.service.WeChatMessageRouter;
 import com.github.congyh.api.WeChatService;
 import com.github.congyh.api.impl.WeChatServiceImpl;
@@ -30,6 +33,16 @@ public class DemoCoreServlet extends HttpServlet {
     private static final long serialVersionUID = -2002712829315094131L;
     private final WeChatService weChatService = new WeChatServiceImpl();
 
+    static {
+        WeChatMessageRouter.addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
+            .withContent("OAuth测试")
+            .useHandler(new DemoOAuth2Handler())
+            .endRule();
+        WeChatMessageRouter.addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
+            .useHandler(new DemoSessionHandler())
+            .endRule();
+    }
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
@@ -39,10 +52,10 @@ public class DemoCoreServlet extends HttpServlet {
 
         // TODO 这里应该判定如果同一个session检测一次即可
         // 如果校验不成功, 说明是非微信服务器消息, 返回警告信息
-//        if (!this.weChatService.checkSignature(req)) {
-//            resp.getWriter().print("警告: 请立即停止非法行为!");
-//            return;
-//        }
+        if (!this.weChatService.checkSignature(req)) {
+            resp.getWriter().print("警告: 请立即停止非法行为!");
+            return;
+        }
 
         String echoStr = req.getParameter("echostr");
         // 如果请求中这个字段有值, 那么就是一个简单的"GET"类型的验证请求,

@@ -1,4 +1,4 @@
-package com.github.congyh.api.impl;
+package com.github.congyh.demo.api.impl;
 
 import com.github.congyh.api.WeChatMessageHandler;
 import com.github.congyh.api.WeChatSessionManager;

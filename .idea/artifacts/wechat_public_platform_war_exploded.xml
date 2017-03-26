@@ -4,7 +4,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="wechat-public-platform" />
+          <element id="module-output" name="wechat-platform-SDK" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
@@ -23,7 +23,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/wechat-platform-SDK/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="wechat-public-platform/web/Web" />
+      <element id="javaee-facet-resources" facet="wechat-platform-SDK/web/Web" />
     </root>
   </artifact>
 </component>

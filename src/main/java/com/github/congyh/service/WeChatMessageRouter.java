@@ -37,14 +37,7 @@ public final class WeChatMessageRouter {
     static {
         // debug, 内置规则, 规则越细的越要放在前面
         // TODO 后期将规则设置整合到WeChatService中去.
-        addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
-            .withContent("OAuth测试")
-            .useHandler(new DemoOAuth2Handler())
-            .endRule();
-        addRule().withMsgType(WeChatConst.REQ_MESSAGE_TYPE_TEXT)
-//            .useHandler(new SimpleTextHandler())
-            .useHandler(new DemoSessionHandler())
-            .endRule();
+
     }
 
     private WeChatMessageRouter() {}
