@@ -32,7 +32,9 @@ import java.util.List;
 public final class WeChatMessageRouter {
     // 规则列表
     private static final List<WeChatMessageRouteRule> rules = new LinkedList<>();
+    // 由于WeChatMessageRouter是单例的, 所以WeChatSessionManager不主动创建, 也是单例的
     private static WeChatSessionManager sessionManager = new BasicSessionManager();
+    // 由于WeChatMessageRouter是单例的, 所以WeChatSessionManager不主动创建, 也是单例的
     private static WeChatDuplicateMessageDetector duplicateMessageDetector
          = new BasicDuplicateMessageDetector();
 
@@ -73,11 +75,11 @@ public final class WeChatMessageRouter {
 
         for (final WeChatMessageRouteRule rule: rules) {
             if (rule.match(inMessage)) {
-                return rule.getHandler().handle(inMessage);
+                return rule.getHandler().handle(inMessage, sessionManager);
             }
         }
 
-        return new NotSupportedMessageTypeHandler().handle(inMessage);
+        return new NotSupportedMessageTypeHandler().handle(inMessage, sessionManager);
     }
 
     public static List<WeChatMessageRouteRule> getRules() {

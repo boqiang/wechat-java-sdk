@@ -3,6 +3,7 @@ package com.github.congyh.api.impl;
 import com.github.congyh.api.WeChatConst;
 import com.github.congyh.api.WeChatMessageHandler;
 import com.github.congyh.api.WeChatOAuth2Service;
+import com.github.congyh.api.WeChatSessionManager;
 import com.github.congyh.builder.WeChatMessageBuilderFactory;
 import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.model.WeChatXmlOutMessage;
@@ -16,7 +17,8 @@ public class DemoOAuth2Handler extends WeChatMessageHandler {
     private final WeChatOAuth2Service weChatOAuth2Service = new WeChatOAuth2ServiceImpl();
 
     @Override
-    public WeChatXmlOutMessage handle(WeChatXmlInMessage inMessage) {
+    public WeChatXmlOutMessage handle(WeChatXmlInMessage inMessage,
+                                      WeChatSessionManager sessionManager) {
         // 构造要发送给用户的URL
         String url = weChatOAuth2Service.buildOAuthAuthenticationURL(
             WeChatConst.OAUTH2_REDIRECT_URI + "/OAuth2Servlet");

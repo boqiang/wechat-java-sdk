@@ -1,6 +1,7 @@
 package com.github.congyh.api.impl;
 
 import com.github.congyh.api.WeChatMessageHandler;
+import com.github.congyh.api.WeChatSessionManager;
 import com.github.congyh.builder.WeChatMessageBuilderFactory;
 import com.github.congyh.model.WeChatXmlInMessage;
 import com.github.congyh.model.WeChatXmlOutMessage;
@@ -12,7 +13,8 @@ import com.github.congyh.model.WeChatXmlOutMessage;
  */
 public class NotSupportedMessageTypeHandler extends WeChatMessageHandler {
     @Override
-    public WeChatXmlOutMessage handle(WeChatXmlInMessage inMessage) {
+    public WeChatXmlOutMessage handle(WeChatXmlInMessage inMessage,
+                                      WeChatSessionManager sessionManager) {
         return WeChatMessageBuilderFactory.buildText()
             .fromUser(inMessage.getToUserName())
             .toUser(inMessage.getFromUserName())

@@ -11,7 +11,16 @@ import com.github.congyh.service.WeChatMessageRouteRule;
  */
 public abstract class WeChatMessageHandler {
     private WeChatMessageRouteRule rule;
-    public abstract WeChatXmlOutMessage handle(WeChatXmlInMessage inMessage);
+
+    /**
+     * 处理服务器消息
+     *
+     * @param inMessage 服务器消息
+     * @param sessionManager 内含所有session对象
+     * @return 响应消息
+     */
+    public abstract WeChatXmlOutMessage handle(WeChatXmlInMessage inMessage,
+                                               WeChatSessionManager sessionManager);
 
     public WeChatMessageRouteRule getRule() {
         return rule;
