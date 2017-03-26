@@ -1,6 +1,7 @@
 package com.github.congyh.api;
 
-import com.github.congyh.model.session.WeChatSession;
+import com.github.congyh.service.session.WeChatSession;
+import com.github.congyh.service.session.impl.BasicWeChatSession;
 
 /**
  * 定义session管理的基本方法
@@ -29,4 +30,11 @@ public interface WeChatSessionManager {
      * @return session对象 or null
      */
     public WeChatSession getSession(String sessionId, boolean canCreate);
+
+    /**
+     * 使Session对象立即失效
+     *
+     * @param weChatSession session对象
+     */
+    public void invalidate(WeChatSession weChatSession);
 }

@@ -13,7 +13,6 @@ import com.github.congyh.model.WeChatXmlOutMessage;
  * @author <a href="mailto:yihao.cong@outlook.com">Cong Yihao</a>
  */
 public class DemoOAuth2Handler extends WeChatMessageHandler {
-    // TODO 这里还需要改造, 初定与WeChatService结合?
     private final WeChatOAuth2Service weChatOAuth2Service = new WeChatOAuth2ServiceImpl();
 
     @Override
