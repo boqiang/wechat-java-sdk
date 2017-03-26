@@ -17,9 +17,9 @@ public class MyX509TrustManager implements X509TrustManager {
     /**
      * 检查客户端证书
      *
-     * @param x509Certificates
-     * @param s
-     * @throws CertificateException
+     * @param x509Certificates 证书
+     * @param s s
+     * @throws CertificateException 证书错误
      */
     @Override
     public void checkClientTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
@@ -29,9 +29,9 @@ public class MyX509TrustManager implements X509TrustManager {
     /**
      * 检查服务器端证书
      *
-     * @param x509Certificates
-     * @param s
-     * @throws CertificateException
+     * @param x509Certificates 证书
+     * @param s s
+     * @throws CertificateException 证书错误
      */
     @Override
     public void checkServerTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
@@ -41,7 +41,7 @@ public class MyX509TrustManager implements X509TrustManager {
     /**
      * 返回受信任的X509证书组
      *
-     * @return
+     * @return 受信任的X509证书组
      */
     @Override
     public X509Certificate[] getAcceptedIssuers() {

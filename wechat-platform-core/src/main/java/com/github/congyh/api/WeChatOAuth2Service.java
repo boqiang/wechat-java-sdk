@@ -30,7 +30,7 @@ public interface WeChatOAuth2Service {
      * 获取OAuth2.0授权码
      *
      * @param req 请求
-     * @return
+     * @return OAuth2.0授权码
      */
     public String getOAuth2Code(ServletRequest req);
 
@@ -45,6 +45,7 @@ public interface WeChatOAuth2Service {
     /**
      * 获取通过OAuth2.0授权的微信用户信息
      *
+     * @param weChatOAuth2AccessToken OAuth2AccessToken
      * @return 微信用户信息
      */
     public WeChatUser getOAuth2UserInfo(WeChatOAuth2AccessToken weChatOAuth2AccessToken);

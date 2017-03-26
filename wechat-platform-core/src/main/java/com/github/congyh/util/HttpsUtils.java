@@ -42,15 +42,18 @@ public class HttpsUtils {
     }
 
     /**
+     *
+     */
+    /**
      * 发送 get 请求
      *
      * @param url     请求 url
      * @param headers 请求头数组
      * @return 响应结果字符串
-     * @throws NoSuchAlgorithmException
-     * @throws KeyStoreException
-     * @throws KeyManagementException
-     * @throws IOException
+     * @throws NoSuchAlgorithmException 无此算法
+     * @throws KeyStoreException KeyStoreException
+     * @throws KeyManagementException KeyManagementException
+     * @throws IOException IOException
      */
     public static String get(String url, Header[] headers)
         throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
@@ -71,10 +74,16 @@ public class HttpsUtils {
      *
      * @param url 请求 url
      * @return 响应结果字符串
-     * @throws NoSuchAlgorithmException
-     * @throws KeyStoreException
-     * @throws KeyManagementException
-     * @throws IOException
+     */
+    /**
+     * 发送 get 请求
+     *
+     * @param url 请求 url
+     * @return 响应结果字符串
+     * @throws NoSuchAlgorithmException 无此算法
+     * @throws KeyStoreException KeyStoreException
+     * @throws KeyManagementException KeyManagementException
+     * @throws IOException IOException
      */
     public static String get(String url)
         throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
@@ -88,10 +97,18 @@ public class HttpsUtils {
      * @param headers 请求头
      * @param entity  请求实体
      * @return 响应结果字符串
-     * @throws NoSuchAlgorithmException
-     * @throws KeyStoreException
-     * @throws KeyManagementException
-     * @throws IOException
+     */
+    /**
+     * 发送 post 请求
+     *
+     * @param url     请求 url
+     * @param headers 请求头
+     * @param entity  请求实体
+     * @return 响应结果字符串
+     * @throws NoSuchAlgorithmException 无此算法
+     * @throws KeyStoreException KeyStoreException
+     * @throws KeyManagementException KeyManagementException
+     * @throws IOException IOException
      */
     public static String post(String url, Header[] headers, HttpEntity entity)
         throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
@@ -113,10 +130,16 @@ public class HttpsUtils {
      *
      * @param url 请求 url
      * @return 响应结果字符串
-     * @throws NoSuchAlgorithmException
-     * @throws KeyStoreException
-     * @throws KeyManagementException
-     * @throws IOException
+     */
+    /**
+     * 发送 post 请求
+     *
+     * @param url 请求 url
+     * @return 响应结果字符串
+     * @throws NoSuchAlgorithmException 无此算法
+     * @throws KeyStoreException KeyStoreException
+     * @throws KeyManagementException KeyManagementException
+     * @throws IOException IOException
      */
     public static String post(String url)
         throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
@@ -129,10 +152,17 @@ public class HttpsUtils {
      * @param url     请求 url
      * @param headers 请求头
      * @return 响应结果字符串
-     * @throws NoSuchAlgorithmException
-     * @throws KeyStoreException
-     * @throws KeyManagementException
-     * @throws IOException
+     */
+    /**
+     * 发送 post 请求
+     *
+     * @param url     请求 url
+     * @param headers 请求头
+     * @return 响应结果字符串
+     * @throws NoSuchAlgorithmException 无此算法
+     * @throws KeyStoreException KeyStoreException
+     * @throws KeyManagementException KeyManagementException
+     * @throws IOException IOException
      */
     public static String post(String url, Header[] headers)
         throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
@@ -145,10 +175,17 @@ public class HttpsUtils {
      * @param url    请求 url
      * @param entity 请求体
      * @return 响应结果字符串
-     * @throws NoSuchAlgorithmException
-     * @throws KeyStoreException
-     * @throws KeyManagementException
-     * @throws IOException
+     */
+    /**
+     * 发送 post 请求
+     *
+     * @param url    请求 url
+     * @param entity 请求体
+     * @return 响应结果字符串
+     * @throws NoSuchAlgorithmException 无此算法
+     * @throws KeyStoreException KeyStoreException
+     * @throws KeyManagementException KeyManagementException
+     * @throws IOException IOException
      */
     public static String post(String url, HttpEntity entity)
         throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {

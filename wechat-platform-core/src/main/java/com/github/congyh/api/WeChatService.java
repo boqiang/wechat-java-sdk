@@ -18,8 +18,8 @@ public interface WeChatService {
      *
      * @param req  客户端请求
      * @return true 校验成功 or false 失败
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException sevlet异常
+     * @throws IOException IO异常
      */
     public boolean checkSignature(HttpServletRequest req)
         throws ServletException, IOException;

@@ -11,10 +11,11 @@ import java.io.InputStream;
  */
 public class IOUtils {
     /**
-     * 字节输入流->字节数组
+     * 字节输入流 到 字节数组 转换
      *
      * @param in 字节输入流
      * @return 字节数组
+     * @throws IOException IO异常
      */
     public byte[] readAllBytes(InputStream in) throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();

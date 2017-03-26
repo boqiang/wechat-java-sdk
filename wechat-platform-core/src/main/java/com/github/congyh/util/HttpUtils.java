@@ -16,6 +16,7 @@ public class HttpUtils {
      * 获取HTTP消息header信息
      *
      * @param req HTTP请求
+     * @param <T> 请求类型
      * @return header的key, value组成的map
      */
     public static <T extends ServletRequest> Map<String, String> getRequestHeaderMap(T req) {
@@ -34,6 +35,7 @@ public class HttpUtils {
      * 获取HTTP Header的字符串表示形式
      *
      * @param req HTTP请求
+     * @param <T> 请求类型
      * @return HTTP Header的字符串表示形式
      */
     public static <T extends ServletRequest> String getRequestHeaderAsString(T req) {
