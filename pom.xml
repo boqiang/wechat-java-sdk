@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.congyh</groupId>
-    <artifactId>wechat-public-platform</artifactId>
-    <packaging>war</packaging>
+    <artifactId>wechat-platform-SDK</artifactId>
+    <packaging>pom</packaging>
     <version>0.2</version>
 
-    <name>WeChat Public Platform</name>
+    <name>WeChat Platform SDK</name>
     <description>Personal Wechat public platform.</description>
-    <url>https://github.com/congyh/wechat-public-platform</url>
+    <url>https://github.com/congyh/wechat-platform-SDK</url>
 
     <licenses>
         <license>
@@ -28,9 +28,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/congyh/wechat-public-platform</connection>
-        <developerConnection>scm:git:git@github.com:congyh/wechat-public-platform.git</developerConnection>
-        <url>https://github.com/congyh/wechat-public-platform</url>
+        <connection>scm:git:https://github.com/congyh/wechat-platform-SDK</connection>
+        <developerConnection>scm:git:git@github.com:congyh/wechat-platform-SDK.git</developerConnection>
+        <url>https://github.com/congyh/wechat-platform-SDK</url>
     </scm>
 
     <profiles>
@@ -168,56 +168,12 @@
 
 
     <build>
-        <finalName>ROOT</finalName>
+        <finalName>wechat-platform-SDK</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-            </plugin>
-            <!-- maven-jar打包插件 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass></mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-
-            <!-- maven-dependency打包插件,将第三方jar包放在自己的jar包之外的独立lib目录 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.9</version>
-                <executions>
-                    <execution>
-                        <id>copy-dependencies</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                            <excludeArtifactIds>junit</excludeArtifactIds>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.5</version>
-                <!--不检查web.xml配置, 因为我们使用spring的类进行配置-->
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
+                <version>3.5.1</version>
             </plugin>
         </plugins>
     </build>
