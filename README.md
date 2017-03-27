@@ -7,7 +7,7 @@
    <dependency>
        <groupId>com.github.congyh</groupId>
        <artifactId>wechat-platform-core</artifactId>
-       <version>0.2</version>
+       <version>0.3</version>
    </dependency>
    ```
 2. 在resources文件夹中的wechat-config.properties文件, 填写以下配置内容:
