@@ -32,7 +32,7 @@ public class WeChatXmlInMessage extends AbstractMessage {
     // 语音格式, 如amr, peex等
     @XStreamAlias("Format")
     private String format;
-    // 语音识别结果
+    /** 语音识别结果 */
     @XStreamAlias("Recognition")
     private String recognition;
     // 视频消息缩略图的媒体id, 可以调用多媒体文件下载接口拉取数据

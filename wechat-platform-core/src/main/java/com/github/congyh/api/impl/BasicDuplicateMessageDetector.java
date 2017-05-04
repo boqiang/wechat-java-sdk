@@ -25,11 +25,13 @@ public final class BasicDuplicateMessageDetector implements WeChatDuplicateMessa
     private final long validTime;
     // 清理重复消息的周期, 比validTime小即可, 默认与微信重发时间间隔相同
     private final long clearInterval;
+    // 判断后台清理线程是否已经启动
+    private volatile boolean started;
 
     public BasicDuplicateMessageDetector(long validTime, long clearInterval) {
         this.validTime = validTime;
         this.clearInterval = clearInterval;
-        // 不会造成this指针泄漏
+        // TODO 是否会造成this指针泄漏? 如果能有类似PostConstruct功能就好了
         beginScheduledDetect();
     }
 
