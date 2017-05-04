@@ -1,5 +1,7 @@
 # 微信公众平台后台
 
+Javadoc: [详见这里][1]
+
 使用说明:
 
 1. maven添加依赖
@@ -17,3 +19,7 @@
     - secret=可以在开发者界面上看到
     - oauth2_redirect_uri=oauth2授权成功后的跳转页面(可选配置)
 3. 开发自己的应用.
+
+
+
+[1]: https://congyh.github.io/wechat-platform-SDK
