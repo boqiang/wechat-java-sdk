@@ -22,4 +22,4 @@ Javadoc: [详见这里][1]
 
 
 
-[1]: https://congyh.github.io/wechat-platform-SDK
+[1]: https://congyh.github.io/wechat-java-sdk
